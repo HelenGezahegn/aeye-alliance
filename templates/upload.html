@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Add Google Font called Poppins -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+
+        <!-- Change the tab icon to be the blue eye -->
+        <!-- Change the tab title to be Upload -->
+        <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Emojione_1F441.svg/2000px-Emojione_1F441.svg.png"> 
+        <title> Upload </title>
+
+        <!-- To use jQuery -->
+        <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+        <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+        
+        <!-- Javascript that enables us to upload a file -->
+        <script>
+            // $(function () {
+            //     $(":file").change(function () {
+            //         if (this.files && this.files[0]) {
+            //             var reader = new FileReader();
+            //             reader.onload = imageIsLoaded;
+            //             reader.readAsDataURL(this.files[0]);
+            //         }
+            //     });
+            // });
+
+            // function imageIsLoaded(e) {
+            //     $('#myImg').attr('src', e.target.result);
+            // };
+        </script>
+
+        <style>
+            body {
+                background-color: black;
+                font-family: 'Poppins', sans-serif;
+                background-image: url("https://cdn.dribbble.com/users/32512/screenshots/3025506/artificial_intelligence_product_rokid.gif");
+                background-repeat: no-repeat;
+                background-position: bottom right;
+                background-attachment: fixed;
+                padding: 100px;
+                background-size: 15%;
+                margin-top: 0;
+                padding: 0;
+                text-align: center;
+            }
+            
+            nav {
+                font-size: 30px;
+                padding: 0;
+                margin-top: 0;
+            }
+
+            a {
+                color: white;
+                text-decoration: none;
+                font-size: 30px;
+            }
+
+            a:hover {
+                color: blue;
+                transition: 0.3s;
+            }
+
+            input {
+                font-size: 40px;
+                font-family: 'Poppins', sans-serif;
+                margin-left: -115px;
+                position: absolute;
+            }
+
+            img {
+                text-align: center;
+            }
+            
+            h1 {
+                text-align: center;
+                color: white;
+                font-size: 100px;
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+
+
+
+            
+        </style>
+        
+    </head>
+
+    <body>
+        <h1> Upload Image </h1>
+
+        <nav> 
+            <a href = "index.html"> Home </a> </br>
+            <a href = "aboutus.html"> About Us </a> </br>
+            <a href = "https://github.com/HelenG123/aeye-alliance"> Source Code </a> </br>
+            <form method="post" action="/save_img" name="submit" enctype="multipart/form-data">
+                <input type="file" name="fileField"><br /><br />
+                <input type="submit" name="submit" value="Submit">
+            </form>
+
+
+            <!-- <form id = "form1" runat = "server">
+                    <!-- onchange="readURL(this);" -->
+                <!-- <input type='file' value="Submit" 
+                enctype="multipart/form-data" action="http://127.0.0.1:5000/upload" method="post"/> <br> 
+                <!-- Got rid of the alt so the white outlined box wouldn't appear underneath
+                the input button -->
+                <!-- <img id="myImg" src=""  />
+            </form> </br> --> 
+        </nav> 
+
+        <!-- <form enctype="multipart/form-data" action="submit.py" method="post"></form> -->
+        <!-- <a href="http://localhost:5000/submit/eye/"> Submit </a> -->
+
+    </body>
+</html>
