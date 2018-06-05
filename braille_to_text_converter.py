@@ -3,7 +3,6 @@ import time
 import platform
 import io
 import matplotlib.pyplot as plt
-from google.colab import files
 from matplotlib.pyplot import cm
 import torch
 import torch.nn as nn
@@ -11,13 +10,14 @@ import torch.optim as optim
 import torchvision
 import csv 
 import os
-import pandas as pandas
+import pandas as pd
 from urllib import request
 import requests
 from scipy import misc
 from io import BytesIO
 import urllib
-import cv2
+# might need to comment out for now 
+# import cv2
 import numpy as np
 import tensorflow as tf
 import urllib.request
@@ -106,8 +106,8 @@ for curr_letter in target.keys():
   target[curr_letter][curr_pos] = 1
   curr_pos += 1  
 
- # visualize the image
- # Display 'y' in Brailles
+# visualize the image
+# Display 'y' in Brailles
 import matplotlib.pyplot as plt
 import numpy as np
 dd = data[24][0].numpy()
@@ -165,11 +165,6 @@ class CNN(nn.Module):
 # convolutional neural network model
 model = CNN()
 
-# if using GPU
-if use_gpu:
-  # switch model to GPU
-  model.cuda()
-
 # print summary of the neural network model to check if everything is fine. 
 print(model)
 print("# parameter: ", sum([param.nelement() for param in model.parameters()]))
@@ -213,12 +208,6 @@ for epoch in range(num_epochs):
         images = images.permute(2,0,1)
 #         images.unsqueeze_(0)
 
-        # if GPU is available 
-        if use_gpu:
-          # switch tensor type to GPU
-          images = images.cuda()
-          labels = labels.cuda()
-
         # Zero the gradient buffer
         # resets the gradient after each epoch so that the gradients don't add up
         optimizer.zero_grad()  
@@ -250,12 +239,6 @@ for epoch in range(num_epochs):
     # Iterate over data.
     for images, labels in test_set:  
        
-       # if GPU is available 
-       if use_gpu:
-          # switch tensor type to GPU
-          images = images.cuda()
-          labels = labels.cuda()
-          
        # Forward
        outputs = model(images)
        loss = criterion(outputs, labels)  
