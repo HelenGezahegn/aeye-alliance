@@ -3,12 +3,12 @@ app = Flask(__name__)
  
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('home.html')
  
 @app.route("/aboutus")
 def aboutus():
     return render_template('aboutus.html')
-    
+
 # @app.route("/hello")
 # def hello():
 #     return "Hello World!"
