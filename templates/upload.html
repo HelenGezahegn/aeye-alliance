@@ -68,6 +68,7 @@
                 font-family: 'Poppins', sans-serif;
                 margin-left: -115px;
                 position: absolute;
+                color: white; 
             }
 
             img {
@@ -93,27 +94,15 @@
         <h1> Upload Image </h1>
 
         <nav> 
-            <a href = "index.html"> Home </a> </br>
-            <a href = "aboutus.html"> About Us </a> </br>
+            <a href = "/"> Home </a> </br>
+            <a href = "/aboutus"> About Us </a> </br>
             <a href = "https://github.com/HelenG123/aeye-alliance"> Source Code </a> </br>
-            <form method="post" action="/save_img" name="submit" enctype="multipart/form-data">
+            <form method="post" action="/upload_results" name="submit" enctype="multipart/form-data">
                 <input type="file" name="fileField"><br /><br />
                 <input type="submit" name="submit" value="Submit">
             </form>
 
-
-            <!-- <form id = "form1" runat = "server">
-                    <!-- onchange="readURL(this);" -->
-                <!-- <input type='file' value="Submit" 
-                enctype="multipart/form-data" action="http://127.0.0.1:5000/upload" method="post"/> <br> 
-                <!-- Got rid of the alt so the white outlined box wouldn't appear underneath
-                the input button -->
-                <!-- <img id="myImg" src=""  />
-            </form> </br> --> 
         </nav> 
-
-        <!-- <form enctype="multipart/form-data" action="submit.py" method="post"></form> -->
-        <!-- <a href="http://localhost:5000/submit/eye/"> Submit </a> -->
 
     </body>
 </html>

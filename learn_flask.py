@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import time
+import time, CNN
 
 app = Flask(__name__)
 
@@ -17,11 +17,11 @@ def index():
 def aboutus():
     return render_template('aboutus.html')
 
-@app.route("/upload" )
+@app.route("/upload")
 def upload():
     return render_template('upload.html')
 
-@app.route("/save_img", methods=['GET', 'POST'])
+@app.route("/upload_results", methods=['GET', 'POST'])
 def save():
     print(request.files)
     print(request.method)
