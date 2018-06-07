@@ -1,33 +1,9 @@
-import time
-import platform
-import io
-import matplotlib.pyplot as plt
-from matplotlib.pyplot import cm
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import torchvision
-import csv
-import os
-import pandas as pd
-from urllib import request
-from scipy import misc
-from io import BytesIO
-import urllib
 import numpy as np
-import tensorflow as tf
-import urllib.request
-from torchvision import transforms
-import string
 import cv2
-from urllib import request
-from scipy import misc
-from io import BytesIO
-import urllib
-import urllib.request
-from torchvision import transforms
 from PIL import Image
-
 
 class CNN(nn.Module):
     def __init__(self):
@@ -73,12 +49,9 @@ class CNN(nn.Module):
 
         return out
 
-
 model = CNN()
 criterion = nn.CrossEntropyLoss()
 model.load_state_dict(torch.load("model.pth"))
-
-
 # image = Image.open('./Dataset_3/j.jpg')
 image = Image.open('z.jpg')
 image = np.array(image)
@@ -89,5 +62,4 @@ image = image.permute(0, 3, 1, 2)
 predicted_tensor = model(image)
 _, predicted_letter = torch.max(predicted_tensor, 1)
 
-print(predicted_letter)
 print(chr(97+predicted_letter))
