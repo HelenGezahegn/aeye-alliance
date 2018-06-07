@@ -43,12 +43,29 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="97dp" />
 
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="148dp"
         android:layout_height="127dp"
+        android:gravity_layout="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/sym_def_app_icon"
-        tools:layout_editor_absoluteX="86dp"
         tools:layout_editor_absoluteY="189dp" />
 
 </android.support.constraint.ConstraintLayout>
