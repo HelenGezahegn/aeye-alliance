@@ -7,6 +7,7 @@ from PIL import Image
 
 
 def make_prediction(img_path):
+    print("Accessed")
     model = CNN()
     model.load_state_dict(torch.load("model.pth"))
     image = Image.open(img_path)
