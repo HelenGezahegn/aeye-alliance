@@ -5,6 +5,21 @@ import numpy as np
 import cv2
 from PIL import Image
 
+
+def make_prediction(img_path):
+    model = CNN()
+    model.load_state_dict(torch.load("model.pth"))
+    image = Image.open(img_path)
+    image = np.array(image)
+    image = cv2.resize(image, (28, 28))
+    image = image.astype(np.float32) / 255.0
+    image = torch.from_numpy(image[None, :, :, :])
+    image = image.permute(0, 3, 1, 2)
+    predicted_tensor = model(image)
+    _, predicted_letter = torch.max(predicted_tensor, 1)
+    # for testing: print(chr(97+predicted_letter))
+    return chr(97+predicted_letter)
+
 class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
@@ -49,17 +64,5 @@ class CNN(nn.Module):
 
         return out
 
-model = CNN()
-criterion = nn.CrossEntropyLoss()
-model.load_state_dict(torch.load("model.pth"))
-# image = Image.open('./Dataset_3/j.jpg')
-image = Image.open('z.jpg')
-image = np.array(image)
-image = cv2.resize(image, (28, 28))
-image = image.astype(np.float32) / 255.0
-image = torch.from_numpy(image[None, :, :, :])
-image = image.permute(0, 3, 1, 2)
-predicted_tensor = model(image)
-_, predicted_letter = torch.max(predicted_tensor, 1)
+# for testing: make_prediction()
 
-print(chr(97+predicted_letter))
