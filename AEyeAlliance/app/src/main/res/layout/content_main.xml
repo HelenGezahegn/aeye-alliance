@@ -14,7 +14,7 @@
         android:layout_height="97dp"
         android:gravity="center"
         android:text="AEyeAlliance."
-        android:textSize="60sp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -26,39 +26,49 @@
         android:id="@+id/homeDesc"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Your Friendly Braille-to-Text Converter"
         android:textSize="20sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/rightEyeBtn"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoName"
-        app:layout_constraintVertical_bias="0.223" />
+        app:layout_constraintTop_toBottomOf="@+id/logoName" />
 
     <ImageButton
-        android:id="@+id/leftEyeBtn"
-        android:layout_width="194dp"
-        android:layout_height="200dp"
+        android:id="@+id/leftImgButton"
+
+        android:layout_width="134dp"
+        android:layout_height="137dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="92dp"
+        android:adjustViewBounds="true"
         android:background="@null"
-        app:layout_constraintEnd_toStartOf="@+id/rightEyeBtn"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:baselineAlignBottom="true"
+        android:maxHeight="100dp"
+        android:maxWidth="100dp"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/eyelid"
-        tools:layout_editor_absoluteY="254dp" />
+        app:layout_constraintTop_toBottomOf="@+id/homeDesc"
+        app:srcCompat="@drawable/lefteyebraille" />
 
     <ImageButton
-        android:id="@+id/rightEyeBtn"
-        android:layout_width="194dp"
-        android:layout_height="200dp"
+        android:id="@+id/rightImgButton"
+        android:layout_width="131dp"
+        android:layout_height="137dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:adjustViewBounds="true"
         android:background="@null"
+        android:baselineAlignBottom="true"
+        android:maxHeight="100dp"
+        android:maxWidth="100dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/leftImgButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/leftEyeBtn"
-        app:srcCompat="@drawable/eyelid"
-        tools:layout_editor_absoluteY="254dp" />
+        app:srcCompat="@drawable/righteyebraille" />
+
 
 </android.support.constraint.ConstraintLayout>
