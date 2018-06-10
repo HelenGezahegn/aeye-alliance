@@ -28,13 +28,11 @@ def upload():
 @app.route("/upload_results", methods=['GET', 'POST'])
 def save():
     print(request.files)
-    print(request.method)
     
     # Save the image in the path
     if request.method == 'POST' and 'fileField' in request.files:
         filename = photos.save(request.files['fileField'])
     
-    print(os.getcwd())
     img_path = "static/" + filename
     predicted_letter = make_prediction(img_path)
     return render_template('display.html', filename=filename, letter=predicted_letter)
