@@ -316,4 +316,4 @@ plt.title("Learning Curve (Loss vs Number of Epochs)")
 plot_learning_curve(train_losses, validation_losses)
 
 torch.save(model.state_dict(), "current_model.pth")
-
+torch.save(model.state_dict(), "model.pth")
