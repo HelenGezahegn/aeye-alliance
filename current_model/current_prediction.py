@@ -3,12 +3,15 @@ import torch.nn as nn
 import torch.optim as optim
 import numpy as np
 import cv2
+import os
 from PIL import Image
 
 
 def make_prediction(img_path):
+    # Change directory so you can access current_model.pth
+    
     model = CNN()
-    model.load_state_dict(torch.load("current_model.pth"))
+    model.load_state_dict(torch.load("current_model/current_model.pth"))
     image = Image.open(img_path)
     image = np.array(image)
     image = cv2.resize(image, (28, 28))
@@ -17,8 +20,7 @@ def make_prediction(img_path):
     image = image.permute(0, 3, 1, 2)
     predicted_tensor = model(image)
     _, predicted_letter = torch.max(predicted_tensor, 1)
-    # for testing:
-    print(chr(97+predicted_letter))
+    # for testing: print(chr(97+predicted_letter))
     return chr(97+predicted_letter)
 
 
@@ -66,5 +68,3 @@ class CNN(nn.Module):
         out = self.block3(out)
 
         return out
-
-make_prediction("m.jpg")

@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
-import time, CNN, os
-import prediction
+import time, CNN
+import os, sys
+
+sys.path.insert(0, 'current_model')
+from current_prediction import make_prediction
 
 app = Flask(__name__)
 
@@ -31,12 +34,10 @@ def save():
     if request.method == 'POST' and 'fileField' in request.files:
         filename = photos.save(request.files['fileField'])
     
-    # print(os.getcwd())
+    print(os.getcwd())
     img_path = "static/" + filename
-    predicted_letter = prediction.make_prediction(img_path)
-    # time.sleep(1)
+    predicted_letter = make_prediction(img_path)
     return render_template('display.html', filename=filename, letter=predicted_letter)
-    # return render_template('display.html', filename=filename)
 
 if __name__ == "__main__":
     app.run(debug=True)
