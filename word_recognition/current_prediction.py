@@ -10,6 +10,7 @@ def make_prediction(img_path):
     model = CNN()
     model.load_state_dict(torch.load("current_model.pth"))
     image = Image.open(img_path)
+    image = image.convert('RGB')
     width, height = image.size
     num = round(width/height/0.75)
     w = width/num
@@ -88,4 +89,4 @@ class CNN(nn.Module):
 
         return out
 
-print(make_prediction("family.jpg"))
+print(make_prediction("family.png"))
