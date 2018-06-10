@@ -35,7 +35,7 @@ import urllib.request
 import string
 
 # Upload and read the csv files from the github repo
-df = pd.read_csv("https://raw.githubusercontent.com/HelenG123/aeye-alliance/master/Labelled%20Data/combined.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/HelenG123/aeye-alliance/master/Labelled%20Data/ting_yi_new_dataset.csv")
 
 # generate the targets 
 # the targets are one hot encoding vectors
@@ -47,7 +47,7 @@ target = {}
 # Initalize a target dict that has the letters as its keys and as its value
 # an empty one-hot encoding of size 26
 for letter in alphabet: 
-    target[letter] = [0] * 26
+    target[letter] = [0] * 27
 
 # Do the one-hot encoding for each letter now 
 curr_pos = 0 
@@ -55,6 +55,8 @@ for curr_letter in target.keys():
     target[curr_letter][curr_pos] = 1
     curr_pos += 1  
 
+# add a space as a "letter" in target
+target[' '] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 print(target)
 
 # collect all data from the csv file
@@ -93,13 +95,16 @@ batch_size_train = 20
 batch_size_test = 5
 batch_size_validation = 5
 
-# splitting data to get training and validation sets
-# train has 1315 
-train_dataset = data[:1316]
+# splitting data to get training, test, and validation sets
+# currently splitting my csv file only
+# has 1404 in total
+# 140 each for test and train
+# 1124 for train
+train_dataset = data[:1124]
 # test has 164
-test_dataset = data[1316:1479]
+test_dataset = data[1124:1264]
 # validation has 164
-validation_dataset = data[1479:]
+validation_dataset = data[1264:]
 
 # create the dataloader objects
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size_train, shuffle=True)
@@ -139,7 +144,7 @@ class CNN(nn.Module):
         self.block3 = nn.Sequential(
             nn.Linear(32*7*7, 100),
             nn.LeakyReLU(),
-            nn.Linear(100, 26)
+            nn.Linear(100, 27)
         )
         
         #1x26
@@ -160,7 +165,7 @@ model = CNN()
 print(model)
 print("# parameter: ", sum([param.nelement() for param in model.parameters()]))
 
-#setting the learning rate
+# setting the learning rate
 learning_rate = 1e-3
 
 # Using a variable to store the cross entropy method
@@ -182,7 +187,7 @@ total_train_losses = []
 total_validation_losses = []
 
 # for loop that iterates over all the epochs
-num_epochs = 10
+num_epochs = 20
 for epoch in range(num_epochs):
     
     # variables to store/keep track of the loss and number of iterations
@@ -206,7 +211,7 @@ for epoch in range(num_epochs):
         outputs = model(images)
 
         # convert the labels from one hot encoding vectors into integer values 
-        labels = labels.view(-1, 26)
+        labels = labels.view(-1, 27)
         y_true = torch.argmax(labels, 1)
 
         loss = criterion(outputs, y_true)
@@ -248,7 +253,7 @@ for epoch in range(num_epochs):
         outputs = model(images)
 
         # convert the labels from one hot encoding vectors to integer values
-        labels = labels.view(-1, 26)
+        labels = labels.view(-1, 27)
         y_true = torch.argmax(labels, 1)
         # calculate the loss
         loss = criterion(outputs, y_true)
@@ -282,7 +287,7 @@ for epoch in range(num_epochs):
         outputs = model(images)
 
         # convert the labels from one hot encoding vectors into integer values 
-        labels = labels.view(-1, 26)
+        labels = labels.view(-1, 27)
         y_true = torch.argmax(labels, 1)
 
         # find the index of the prediction
@@ -299,3 +304,18 @@ for epoch in range(num_epochs):
 tf = time.time()
 print()
 print("time: {} s" .format(tf-t0))
+
+# learning curve function
+def plot_learning_curve(train_losses, validation_losses):
+    # plot the training and validation losses
+    # x-axis is the number of training steps
+    # y-axis is loss
+    plt.ylabel('Loss')
+    plt.xlabel('Number of Epochs')
+    plt.plot(train_losses, label="training")
+    plt.plot(validation_losses, label="validation")
+    plt.legend(loc=1)
+
+# plot the learning curve
+plt.title("Learning Curve (Loss vs Number of Epochs)")
+plot_learning_curve(train_losses, validation_losses)
