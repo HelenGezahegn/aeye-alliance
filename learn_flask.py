@@ -27,7 +27,6 @@ def upload():
 
 @app.route("/upload_results", methods=['GET', 'POST'])
 def save():
-    print(request.files)
     
     # Save the image in the path
     if request.method == 'POST' and 'fileField' in request.files:
