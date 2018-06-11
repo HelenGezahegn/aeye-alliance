@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AEyeAlliance</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_upload">Upload</string>
+    <string name = "uploaded_img"> Display Uploaded Image </string>
+
 </resources>

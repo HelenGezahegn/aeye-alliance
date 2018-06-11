@@ -1,6 +1,7 @@
 package ai4good.aeyealliance;
 
 import android.app.ActionBar;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,33 +10,113 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.webkit.WebView;
+
+
 import android.app.Activity;
 import android.view.ViewAnimationUtils;
 import android.graphics.drawable.AnimationDrawable;
+import android.content.Intent;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+//import com.theartofdev.edmodo.cropper.CropImage;
+
+import java.io.File;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    ImageView displayImg;
+    Button pickImgBtn;
+
+
+    public ImageButton btn1;
+    public void init1() {
+        btn1 = (ImageButton)findViewById(R.id.leftImgButton);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent aboutUs = new Intent(MainActivity.this, AboutUs.class);
+
+                startActivity(aboutUs);
+
+            }
+        });
+
+    }
+
+
+    public ImageButton btn2;
+    public void init2() {
+        btn2 = (ImageButton)findViewById(R.id.rightImgButton);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent upload = new Intent(MainActivity.this, AboutUs.class);
+
+                startActivity(upload);
+
+            }
+        });
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ImageButton bt1 = (ImageButton) findViewById(R.id.leftImgButton);
+        ImageButton bt2 = (ImageButton) findViewById(R.id.rightImgButton);
+        displayImg = (ImageView) findViewById(R.id.displayImg);
+        pickImgBtn = (Button) findViewById(R.id.pickImgBtn);
 
-        //added the right image button activity
-        button1= (ImageButton)findViewById(R.id.leftImgButton);
-        button1.setOnClickListener(imgButtonHandler1);
+//        pickImgBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                CropImage.activity().start(MainActivity.this);
+//            }
+//        });
 
-        button2 = (ImageButton)findViewById(R.id.rightImgButton);
-        button2.setOnClickListener(imgButtonHandler2);
+        bt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent int1 = new Intent(MainActivity.this, AboutUs.class);
+                startActivity(int1);
+            }
+        });
+
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent int2 = new Intent(MainActivity.this, Upload.class);
+                startActivity(int2);
+            }
+        });
 
     }
-//    ActionBar actionBar = getActionBar();
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//            if (resultCode == RESULT_OK) {
+//                Uri resultUri = result.getUri();
 //
-//    actionBar.hide();
+//                displayImg.setImageURI(resultUri);
+//
+//            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+//                Exception error = result.getError();
+//                Toast.makeText(this, ""+error, Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -62,14 +143,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton button1;
     ImageButton button2;
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//
-//    }
-
 
     View.OnClickListener imgButtonHandler1 = new View.OnClickListener() {
         @Override
@@ -80,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
             //button1.setBackgroundResource(R.drawable.eye);
             //button.setVisibility(View.GONE);
             //button.setVisibility(View.INVISIBLE);
+
 
 
         }
@@ -103,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+
 
 
 

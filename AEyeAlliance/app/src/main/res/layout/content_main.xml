@@ -68,7 +68,8 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@+id/leftImgButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/righteyebraille" />
+        app:srcCompat="@drawable/righteyebraille"
+        android:onClick = "sendMessage"/>
 
 
 </android.support.constraint.ConstraintLayout>

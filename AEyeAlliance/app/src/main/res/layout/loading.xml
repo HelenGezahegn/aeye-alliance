@@ -6,21 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <pl.droidsonroids.gif.GifTextView
-        android:layout_width="371dp"
-        android:layout_height="553dp"
-        android:background="@drawable/moving_eye"
-        tools:layout_editor_absoluteX="-51dp"
-        tools:layout_editor_absoluteY="-45dp" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="264dp"
-        android:layout_height="239dp"
-        app:srcCompat="@drawable/moving_eye"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="196dp" />
+    <!--<ImageView-->
+    <!--android:id="@+id/imageView3"-->
+    <!--android:layout_width="264dp"-->
+    <!--android:layout_height="239dp"-->
+    <!--app:srcCompat="@drawable/moving_eye"-->
+    <!--tools:layout_editor_absoluteX="28dp"-->
+    <!--tools:layout_editor_absoluteY="196dp" />-->
 
 
     <!--<animation-list xmlns:android="http://schemas.android.com/apk/res/android"-->
@@ -29,4 +21,8 @@
 
     <!--</animation-list>-->
 
+    <WebView
+        android:id="@+id/myWebView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>
