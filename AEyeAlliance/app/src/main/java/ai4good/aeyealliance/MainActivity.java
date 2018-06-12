@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ImageButton bt1 = (ImageButton) findViewById(R.id.leftImgButton);
         ImageButton bt2 = (ImageButton) findViewById(R.id.rightImgButton);
-        displayImg = (ImageView) findViewById(R.id.displayImg);
-        pickImgBtn = (Button) findViewById(R.id.pickImgBtn);
+//        displayImg = (ImageView) findViewById(R.id.displayImg);
+//        pickImgBtn = (Button) findViewById(R.id.pickImgBtn);
 
 //        pickImgBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
