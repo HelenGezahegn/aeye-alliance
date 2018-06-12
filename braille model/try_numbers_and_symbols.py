@@ -30,7 +30,7 @@ import string
 
 # Upload and read the csv files from the github repo
 # change once get more data
-df = pd.read_csv("https://raw.githubusercontent.com/HelenG123/aeye-alliance/master/Labelled%20Data/space.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/HelenG123/aeye-alliance/master/Labelled%20Data/symbols_letters.csv")
 
 # generate the targets 
 # the targets are one hot encoding vectors
@@ -86,30 +86,72 @@ for i, row in df.iterrows():
     # append the current image & target
     data.append(picture)
 
+# create a dictionary of all the characters 
+characters = alphabet + symbols
+
+index2char = {}
+number = 0
+for char in characters: 
+    index2char[number] = char
+    number += 1
+
+print(index2char)
+
+# find the number of each character in a dataset
+def num_chars(dataset, index2char):
+    chars = {}
+    for _, label in dataset:
+        char = index2char[int(torch.argmax(label))]
+        # update
+        if char in chars:
+            chars[char] += 1
+        # initialize
+        else:
+            chars[char] = 1
+    return chars
+
 # Create dataloader objects
 
 # shuffle all the data
 random.shuffle(data)
 
 # batch sizes for train, test, and validation
-batch_size_train = 20
-batch_size_test = 5
-batch_size_validation = 5
+batch_size_train = 10
+batch_size_test = 3
+batch_size_validation = 3
 
-# 2242
+# 2121
 # splitting data to get training, test, and validation sets
 # change once get more data
-# 1794 for train
-train_dataset = data[:1794]
-# test has 224
-test_dataset = data[1794:2018]
-# validation has 224
-validation_dataset = data[2018:]
+# 1600 for train
+train_dataset = data[:1697]
+# test has 212
+test_dataset = data[1697:1909]
+# validation has 212
+validation_dataset = data[1909:]
 
 # create the dataloader objects
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size_train, shuffle=True)
 test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=batch_size_test, shuffle=False)
 validation_loader = torch.utils.data.DataLoader(dataset=validation_dataset, batch_size=batch_size_validation, shuffle=True)
+
+print(len(train_loader))
+print(len(test_loader))
+print(len(validation_loader))
+
+print(len(num_chars(test_dataset, index2char)))
+print(num_chars(test_dataset, index2char))
+
+# to check if a dataset is missing a char
+test_chars = num_chars(test_dataset, index2char)
+
+num = 0
+for char in characters:
+    if char in test_chars:
+        num += 1
+    else:
+        break
+print(num) 
 
 # defines the convolutional neural network
 
@@ -123,6 +165,8 @@ class CNN(nn.Module):
                       kernel_size=5, 
                       stride=1, 
                       padding=2),
+            # batch normalization
+            nn.BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True), 
             #16x28x28
             nn.MaxPool2d(kernel_size=2),
             #16x14x14
@@ -135,6 +179,8 @@ class CNN(nn.Module):
                       kernel_size=5, 
                       stride=1, 
                       padding=2),
+            # batch normalization
+            nn.BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True), 
             #32x14x14
             nn.MaxPool2d(kernel_size=2),
             #32x7x7
@@ -143,6 +189,8 @@ class CNN(nn.Module):
         # linearly 
         self.block3 = nn.Sequential(
             nn.Linear(32*7*7, 100),
+            # batch normalization
+            nn.BatchNorm1d(100),
             nn.LeakyReLU(),
             nn.Linear(100, 37)
         )
@@ -164,19 +212,20 @@ model = CNN()
 print(model)
 print("# parameter: ", sum([param.nelement() for param in model.parameters()]))
 
-#setting the learning rate
-learning_rate = 1e-3
+# setting the learning rate
+learning_rate = 2e-4
 
 # Using a variable to store the cross entropy method
 criterion = nn.CrossEntropyLoss()
 
 # Using a variable to store the optimizer 
-optimizer = torch.optim.Adam(model.parameters(),lr = learning_rate)
+optimizer = torch.optim.Adam(model.parameters(), lr = learning_rate)
 
 t0 = time.time()
 
 # list of all train_losses 
 train_losses = []
+
 # list of all validation losses 
 validation_losses = []
 
@@ -203,7 +252,7 @@ for epoch in range(num_epochs):
 
         # Forward, get output
         outputs = model(images)
-
+        
         # convert the labels from one hot encoding vectors into integer values 
         labels = labels.view(-1, 37)
         y_true = torch.argmax(labels, 1)
@@ -213,7 +262,7 @@ for epoch in range(num_epochs):
         
         # Backward (computes all the gradients)
         loss.backward()
-
+        
         # Optimize
         # loops through all parameters and updates weights by using the gradients 
         # takes steps backwards to optimize (to reach the minimum weight)
@@ -226,6 +275,9 @@ for epoch in range(num_epochs):
     print('Training Loss: {:.4f}'.format(train_loss/num_iter_train))
     # append training loss over all the epochs
     train_losses.append(train_loss/num_iter_train)
+
+    # evaluate the model
+    model.eval()
     
     # variables to store/keep track of the loss and number of iterations
     validation_loss = 0
@@ -236,10 +288,6 @@ for epoch in range(num_epochs):
         # need to permute so that the images are of size 3x28x28 
         # essential to be able to feed images into the model
         images = images.permute(0, 3, 1, 2)
-
-        # Zero the gradient buffer
-        # resets the gradient after each epoch so that the gradients don't add up
-        optimizer.zero_grad()  
 
         # Forward, get output
         outputs = model(images)
@@ -258,12 +306,9 @@ for epoch in range(num_epochs):
     print('Validation Loss: {:.4f}'.format(validation_loss/num_iter_validation))
     # append all validation_losses over all the epochs
     validation_losses.append(validation_loss/num_iter_validation)
-    
-    # evaluate the model
-    model.eval()
 
     num_iter_test = 0
-    mean = 0
+    correct = 0
     
     # Iterate over test_loader
     for images, labels in test_loader:  
@@ -281,13 +326,14 @@ for epoch in range(num_epochs):
 
         # find the index of the prediction
         y_pred = torch.argmax(outputs, 1).type('torch.FloatTensor')
+        
         # convert to FloatTensor
         y_true = y_true.type('torch.FloatTensor')
 
         # find the mean difference of the comparisons
-        mean += torch.mean(torch.eq(y_true, y_pred).type('torch.FloatTensor'))  
+        correct += torch.sum(torch.eq(y_true, y_pred).type('torch.FloatTensor'))
 
-    print('Accuracy on the test set: {:.4f}%'.format(mean/len(test_loader) * 100))
+    print('Accuracy on the test set: {:.4f}%'.format(correct/len(test_dataset) * 100))
     print()
 
 # calculate time it took to train the model
