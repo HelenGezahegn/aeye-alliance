@@ -6,7 +6,6 @@ import random
 
 # for plotting
 import matplotlib.pyplot as plt
-#from matplotlib.pyplot import cm 
 
 # pytorch stuff
 import torch
@@ -31,7 +30,7 @@ import string
 
 # Upload and read the csv files from the github repo
 # change once get more data
-df = pd.read_csv("https://raw.githubusercontent.com/HelenG123/aeye-alliance/master/Labelled%20Data/ting_yi_new_dataset.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/HelenG123/aeye-alliance/master/Labelled%20Data/space.csv")
 
 # generate the targets 
 # the targets are one hot encoding vectors
@@ -39,9 +38,9 @@ df = pd.read_csv("https://raw.githubusercontent.com/HelenG123/aeye-alliance/mast
 alphabet = list(string.ascii_lowercase)
 target = {}
 
-# Initalize a target dict that has letters as its keys and empty one-hot encoding vectors of size 36 as its values
+# Initalize a target dict that has letters as its keys and empty one-hot encoding vectors of size 37 as its values
 for letter in alphabet: 
-    target[letter] = [0] * 36
+    target[letter] = [0] * 37
 
 # Do the one-hot encoding for each letter now 
 curr_pos = 0 
@@ -49,34 +48,20 @@ for curr_letter in target.keys():
     target[curr_letter][curr_pos] = 1
     curr_pos += 1  
 
-# extra symbols
-# initialize the vectors
-target[' '] = [0] * 36 #26
-# this is to represent the start of a number
-target['#'] = [0] * 36 #27
-target['.'] = [0] * 36 #28
-target[','] = [0] * 36 #29
-target[':'] = [0] * 36 #30
-target['\''] = [0] * 36 #31
-target['-'] = [0] * 36 #32
-target[';'] = [0] * 36 #33
-target['?'] = [0] * 36 #34
-target['!'] = [0] * 36 #35
+# extra symbols 
+symbols = [' ', '#', '.', ',', ':', '\'', '-', ';', '?', '!', 'CAPS']
 
-# make them into one hot encoding vectors
-target[' '][26] = 1
-target['#'][27] = 1
-target['.'][28] = 1
-target[','][29] = 1
-target[':'][30] = 1
-target['\''][31] = 1
-target['-'][32] = 1
-target[';'][33] = 1
-target['?'][34] = 1
-target['!'][35] = 1
+# create vectors
+for curr_symbol in symbols:
+    target[curr_symbol] = [0] * 37
 
 print(target)
+print(curr_pos)
 
+# create one-hot encoding vectors
+for curr_symbol in symbols:
+    target[curr_symbol][curr_pos] = 1
+    curr_pos += 1
 
 # collect all data from the csv file
 data=[]
@@ -114,14 +99,15 @@ batch_size_train = 20
 batch_size_test = 5
 batch_size_validation = 5
 
+# 2242
 # splitting data to get training, test, and validation sets
 # change once get more data
-# 1124 for train
-train_dataset = data[:1124]
-# test has 164
-test_dataset = data[1124:1264]
-# validation has 164
-validation_dataset = data[1264:]
+# 1794 for train
+train_dataset = data[:1794]
+# test has 224
+test_dataset = data[1794:2018]
+# validation has 224
+validation_dataset = data[2018:]
 
 # create the dataloader objects
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size_train, shuffle=True)
@@ -161,9 +147,9 @@ class CNN(nn.Module):
         self.block3 = nn.Sequential(
             nn.Linear(32*7*7, 100),
             nn.LeakyReLU(),
-            nn.Linear(100, 36)
+            nn.Linear(100, 37)
         )
-        #1x36
+        #1x37
     
     def forward(self, x): 
         out = self.block1(x)
@@ -180,7 +166,6 @@ model = CNN()
 # print summary of the neural network model to check if everything is fine. 
 print(model)
 print("# parameter: ", sum([param.nelement() for param in model.parameters()]))
-
 
 #setting the learning rate
 learning_rate = 1e-3
@@ -220,10 +205,10 @@ for epoch in range(num_epochs):
         optimizer.zero_grad()  
 
         # Forward, get output
-         outputs = model(images)
+        outputs = model(images)
 
         # convert the labels from one hot encoding vectors into integer values 
-        labels = labels.view(-1, 36)
+        labels = labels.view(-1, 37)
         y_true = torch.argmax(labels, 1)
 
         # calculate training loss
@@ -248,7 +233,7 @@ for epoch in range(num_epochs):
     # variables to store/keep track of the loss and number of iterations
     validation_loss = 0
     num_iter_validation = 0
-
+    
     # Iterate over validation_loader
     for i, (images, labels) in enumerate(validation_loader):  
         # need to permute so that the images are of size 3x28x28 
@@ -263,7 +248,7 @@ for epoch in range(num_epochs):
         outputs = model(images)
 
         # convert the labels from one hot encoding vectors to integer values
-        labels = labels.view(-1, 36)
+        labels = labels.view(-1, 37)
         y_true = torch.argmax(labels, 1)
         
         # calculate the validation loss
@@ -285,7 +270,8 @@ for epoch in range(num_epochs):
     
     # Iterate over test_loader
     for images, labels in test_loader:  
-    # need to permute so that the images are of size 3x28x28 
+
+        # need to permute so that the images are of size 3x28x28 
         # essential to be able to feed images into the model
         images = images.permute(0, 3, 1, 2)
 
@@ -293,7 +279,7 @@ for epoch in range(num_epochs):
         outputs = model(images)
 
         # convert the labels from one hot encoding vectors into integer values 
-        labels = labels.view(-1, 27)
+        labels = labels.view(-1, 37)
         y_true = torch.argmax(labels, 1)
 
         # find the index of the prediction
