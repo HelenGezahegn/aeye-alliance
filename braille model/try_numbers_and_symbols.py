@@ -55,9 +55,6 @@ symbols = [' ', '#', '.', ',', ':', '\'', '-', ';', '?', '!', 'CAPS']
 for curr_symbol in symbols:
     target[curr_symbol] = [0] * 37
 
-print(target)
-print(curr_pos)
-
 # create one-hot encoding vectors
 for curr_symbol in symbols:
     target[curr_symbol][curr_pos] = 1
