@@ -206,7 +206,7 @@ for char in characters:
 print(num) 
 
 
-# In[26]:
+# In[33]:
 
 
 # defines the convolutional neural network
@@ -269,7 +269,7 @@ print(model)
 print("# parameter: ", sum([param.nelement() for param in model.parameters()]))
 
 
-# In[27]:
+# In[34]:
 
 
 # setting the learning rate
@@ -282,7 +282,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr = learning_rate)
 
 
-# In[28]:
+# In[35]:
 
 
 # function to get which characters were missclassified
@@ -295,7 +295,7 @@ def get_chars(indices, incorrect_dict, index2char):
     return incorrect_dict
 
 
-# In[ ]:
+# In[36]:
 
 
 t0 = time.time()
@@ -435,7 +435,7 @@ print()
 print("time: {} s" .format(tf-t0))
 
 
-# In[ ]:
+# In[37]:
 
 
 # learning curve function
@@ -448,16 +448,10 @@ def plot_learning_curve(train_losses, validation_losses):
     plt.legend(loc=1)
 
 
-# In[ ]:
+# In[38]:
 
 
 # plot the learning curve
 plt.title("Learning Curve (Loss vs Number of Epochs)")
 plot_learning_curve(train_losses, validation_losses)
-
-
-# In[20]:
-
-
-get_ipython().system('jupyter nbconvert --to script try_numbers_and_symbols.ipynb')
 
