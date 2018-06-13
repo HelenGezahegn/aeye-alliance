@@ -49,7 +49,7 @@ for curr_letter in target.keys():
     curr_pos += 1  
 
 # extra symbols 
-symbols = [' ', '#', '.', ',', ':', '\'', '-', ';', '?', '!', 'CAPS']
+symbols = [' ', '#', '.', ',', ':', '\'', '-', ';', '?', '!', 'C'] # 'C' stands for CAPS
 
 # create vectors
 for curr_symbol in symbols:
