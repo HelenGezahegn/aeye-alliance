@@ -1,3 +1,9 @@
+
+# coding: utf-8
+
+# In[4]:
+
+
 # to measure run-time
 import time
 
@@ -28,9 +34,17 @@ import urllib.request
 # to get the alphabet
 import string
 
+
+# In[5]:
+
+
 # Upload and read the csv files from the github repo
 # change once get more data
 df = pd.read_csv("https://raw.githubusercontent.com/HelenG123/aeye-alliance/master/Labelled%20Data/symbols_letters.csv")
+
+
+# In[6]:
+
 
 # generate the targets 
 # the targets are one hot encoding vectors
@@ -49,7 +63,7 @@ for curr_letter in target.keys():
     curr_pos += 1  
 
 # extra symbols 
-symbols = [' ', '#', '.', ',', ':', '\'', '-', ';', '?', '!', 'C'] # 'C' stands for CAPS
+symbols = [' ', '#', '.', ',', ':', '\'', '-', ';', '?', '!', 'C'] # C stands for CAPS
 
 # create vectors
 for curr_symbol in symbols:
@@ -59,6 +73,12 @@ for curr_symbol in symbols:
 for curr_symbol in symbols:
     target[curr_symbol][curr_pos] = 1
     curr_pos += 1
+
+print(target)
+
+
+# In[7]:
+
 
 # collect all data from the csv file
 data=[]
@@ -86,6 +106,10 @@ for i, row in df.iterrows():
     # append the current image & target
     data.append(picture)
 
+
+# In[8]:
+
+
 # create a dictionary of all the characters 
 characters = alphabet + symbols
 
@@ -96,6 +120,10 @@ for char in characters:
     number += 1
 
 print(index2char)
+
+
+# In[9]:
+
 
 # find the number of each character in a dataset
 def num_chars(dataset, index2char):
@@ -110,6 +138,16 @@ def num_chars(dataset, index2char):
             chars[char] = 1
     return chars
 
+
+# In[10]:
+
+
+print(num_chars(data, index2char))
+
+
+# In[124]:
+
+
 # Create dataloader objects
 
 # shuffle all the data
@@ -120,15 +158,15 @@ batch_size_train = 10
 batch_size_test = 3
 batch_size_validation = 3
 
-# 2121
+# 2601
 # splitting data to get training, test, and validation sets
 # change once get more data
-# 1600 for train
-train_dataset = data[:1697]
-# test has 212
-test_dataset = data[1697:1909]
-# validation has 212
-validation_dataset = data[1909:]
+# 2080 for train
+train_dataset = data[:2080] #data[:1750]#
+# test has 260
+test_dataset = data[2080:2340] #data[1750:2000]#
+# validation has 260
+validation_dataset = data[2340:] #data[2000:]#
 
 # create the dataloader objects
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size_train, shuffle=True)
@@ -139,8 +177,16 @@ print(len(train_loader))
 print(len(test_loader))
 print(len(validation_loader))
 
+
+# In[93]:
+
+
 print(len(num_chars(test_dataset, index2char)))
 print(num_chars(test_dataset, index2char))
+
+
+# In[126]:
+
 
 # to check if a dataset is missing a char
 test_chars = num_chars(test_dataset, index2char)
@@ -153,6 +199,10 @@ for char in characters:
         break
 print(num) 
 
+
+# In[152]:
+
+
 # defines the convolutional neural network
 
 class CNN(nn.Module):
@@ -162,11 +212,11 @@ class CNN(nn.Module):
             #3x28x28
             nn.Conv2d(in_channels=3, 
                       out_channels=16, 
-                      kernel_size=5, 
+                      kernel_size=5,
                       stride=1, 
                       padding=2),
             # batch normalization
-            nn.BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True), 
+            # nn.BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True), 
             #16x28x28
             nn.MaxPool2d(kernel_size=2),
             #16x14x14
@@ -176,11 +226,11 @@ class CNN(nn.Module):
         self.block2 = nn.Sequential(
             nn.Conv2d(in_channels=16, 
                       out_channels=32, 
-                      kernel_size=5, 
+                      kernel_size=5,
                       stride=1, 
                       padding=2),
             # batch normalization
-            nn.BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True), 
+            # nn.BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True), 
             #32x14x14
             nn.MaxPool2d(kernel_size=2),
             #32x7x7
@@ -190,7 +240,7 @@ class CNN(nn.Module):
         self.block3 = nn.Sequential(
             nn.Linear(32*7*7, 100),
             # batch normalization
-            nn.BatchNorm1d(100),
+            # nn.BatchNorm1d(100),
             nn.LeakyReLU(),
             nn.Linear(100, 37)
         )
@@ -212,6 +262,10 @@ model = CNN()
 print(model)
 print("# parameter: ", sum([param.nelement() for param in model.parameters()]))
 
+
+# In[153]:
+
+
 # setting the learning rate
 learning_rate = 2e-4
 
@@ -220,6 +274,23 @@ criterion = nn.CrossEntropyLoss()
 
 # Using a variable to store the optimizer 
 optimizer = torch.optim.Adam(model.parameters(), lr = learning_rate)
+
+
+# In[154]:
+
+
+# function to get which characters were missclassified
+def get_chars(indices, incorrect_dict, index2char):
+    for i in indices:
+        char = index2char[i]
+        # update
+        if char in incorrect_dict:
+            incorrect_dict[char] += 1
+    return incorrect_dict
+
+
+# In[155]:
+
 
 t0 = time.time()
 
@@ -267,7 +338,8 @@ for epoch in range(num_epochs):
         # loops through all parameters and updates weights by using the gradients 
         # takes steps backwards to optimize (to reach the minimum weight)
         optimizer.step()
-        # update the training loss and number of iterations
+        
+        # update the validation and number of iterations
         train_loss += loss.data[0]
         num_iter_train += 1
 
@@ -309,6 +381,7 @@ for epoch in range(num_epochs):
 
     num_iter_test = 0
     correct = 0
+    incorrect_dict = dict([(c, 0) for c in characters]) # initializing an empty dictionary of all the characters
     
     # Iterate over test_loader
     for images, labels in test_loader:  
@@ -333,13 +406,31 @@ for epoch in range(num_epochs):
         # find the mean difference of the comparisons
         correct += torch.sum(torch.eq(y_true, y_pred).type('torch.FloatTensor'))
 
+        # find missclassified characters
+        # convert to numpy arrays
+        np_y_true = np.array(y_true)
+        np_y_pred = np.array(y_pred)        
+        # which labels were given for the misclassified characters
+        incorrect_pred = np_y_pred[np_y_pred != np_y_true]
+        # what the correct labels should be 
+        incorrect_true = np_y_true[np_y_pred != np_y_true]
+        
+        # update incorrect_dict
+        if len(incorrect_true) > 0:
+            incorrect_dict = get_chars(incorrect_true, incorrect_dict, index2char)
+        
     print('Accuracy on the test set: {:.4f}%'.format(correct/len(test_dataset) * 100))
+    print('Number of missclassifid characters:', incorrect_dict)
     print()
 
 # calculate time it took to train the model
 tf = time.time()
 print()
 print("time: {} s" .format(tf-t0))
+
+
+# In[140]:
+
 
 # learning curve function
 def plot_learning_curve(train_losses, validation_losses):
@@ -350,6 +441,17 @@ def plot_learning_curve(train_losses, validation_losses):
     plt.plot(validation_losses, label="validation")
     plt.legend(loc=1)
 
+
+# In[156]:
+
+
 # plot the learning curve
 plt.title("Learning Curve (Loss vs Number of Epochs)")
 plot_learning_curve(train_losses, validation_losses)
+
+
+# In[157]:
+
+
+get_ipython().system('jupyter nbconvert --to script config_template.ipynb')
+
