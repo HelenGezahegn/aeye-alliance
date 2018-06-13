@@ -1,0 +1,4 @@
+include ':test', ':app'
+include 'cropper'
+include 'sample'
+include 'quick-start'
