@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[4]:
+# In[3]:
 
 
 # to measure run-time
@@ -35,7 +35,7 @@ import urllib.request
 import string
 
 
-# In[5]:
+# In[4]:
 
 
 # Upload and read the csv files from the github repo
@@ -43,7 +43,7 @@ import string
 df = pd.read_csv("https://raw.githubusercontent.com/HelenG123/aeye-alliance/master/Labelled%20Data/symbols_letters.csv")
 
 
-# In[6]:
+# In[5]:
 
 
 # generate the targets 
@@ -80,6 +80,8 @@ print(target)
 # In[7]:
 
 
+t0 = time.time()
+
 # collect all data from the csv file
 data=[]
 
@@ -105,12 +107,16 @@ for i, row in df.iterrows():
     picture.append(curr_target)
     # append the current image & target
     data.append(picture)
+    
+tf = time.time()
+print("time: {} s" .format(tf-t0))
 
 
 # In[8]:
 
 
 # create a dictionary of all the characters 
+# array of all the characters
 characters = alphabet + symbols
 
 index2char = {}
@@ -145,7 +151,7 @@ def num_chars(dataset, index2char):
 print(num_chars(data, index2char))
 
 
-# In[124]:
+# In[23]:
 
 
 # Create dataloader objects
@@ -158,15 +164,15 @@ batch_size_train = 10
 batch_size_test = 3
 batch_size_validation = 3
 
-# 2601
+# 3130
 # splitting data to get training, test, and validation sets
 # change once get more data
-# 2080 for train
-train_dataset = data[:2080] #data[:1750]#
-# test has 260
-test_dataset = data[2080:2340] #data[1750:2000]#
-# validation has 260
-validation_dataset = data[2340:] #data[2000:]#
+# 2504 for train
+train_dataset = data[:2504]
+# test has 313
+test_dataset = data[2504:2817]
+# validation has 313
+validation_dataset = data[2817:]
 
 # create the dataloader objects
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size_train, shuffle=True)
@@ -178,14 +184,14 @@ print(len(test_loader))
 print(len(validation_loader))
 
 
-# In[93]:
+# In[24]:
 
 
 print(len(num_chars(test_dataset, index2char)))
 print(num_chars(test_dataset, index2char))
 
 
-# In[126]:
+# In[25]:
 
 
 # to check if a dataset is missing a char
@@ -200,7 +206,7 @@ for char in characters:
 print(num) 
 
 
-# In[152]:
+# In[26]:
 
 
 # defines the convolutional neural network
@@ -263,7 +269,7 @@ print(model)
 print("# parameter: ", sum([param.nelement() for param in model.parameters()]))
 
 
-# In[153]:
+# In[27]:
 
 
 # setting the learning rate
@@ -276,7 +282,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr = learning_rate)
 
 
-# In[154]:
+# In[28]:
 
 
 # function to get which characters were missclassified
@@ -289,7 +295,7 @@ def get_chars(indices, incorrect_dict, index2char):
     return incorrect_dict
 
 
-# In[155]:
+# In[ ]:
 
 
 t0 = time.time()
@@ -420,7 +426,7 @@ for epoch in range(num_epochs):
             incorrect_dict = get_chars(incorrect_true, incorrect_dict, index2char)
         
     print('Accuracy on the test set: {:.4f}%'.format(correct/len(test_dataset) * 100))
-    print('Number of missclassifid characters:', incorrect_dict)
+    print('Number of missclassified characters:', incorrect_dict)
     print()
 
 # calculate time it took to train the model
@@ -429,7 +435,7 @@ print()
 print("time: {} s" .format(tf-t0))
 
 
-# In[140]:
+# In[ ]:
 
 
 # learning curve function
@@ -442,7 +448,7 @@ def plot_learning_curve(train_losses, validation_losses):
     plt.legend(loc=1)
 
 
-# In[156]:
+# In[ ]:
 
 
 # plot the learning curve
@@ -450,8 +456,8 @@ plt.title("Learning Curve (Loss vs Number of Epochs)")
 plot_learning_curve(train_losses, validation_losses)
 
 
-# In[157]:
+# In[20]:
 
 
-get_ipython().system('jupyter nbconvert --to script config_template.ipynb')
+get_ipython().system('jupyter nbconvert --to script try_numbers_and_symbols.ipynb')
 
