@@ -1,4 +1,6 @@
 import torch
+import torch.onnx
+from torch.autograd import Variable
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
@@ -7,6 +9,12 @@ from PIL import Image
 
 # from autocorrect import spell
 
+def export_model():
+    model = CNN()
+    model.load_state_dict(torch.load("current_model_7.pth"))
+    dummy_input = Variable(torch.randn(1, 3, 28, 28))
+    torch.onnx.export(model, dummy_input, "model.onnx")
+    
 
 def make_prediction(img_path):
     model = CNN()
@@ -131,17 +139,17 @@ class CNN(nn.Module):
 
         return out
 
-print(make_prediction("afternoon_with.png"))
-print(make_prediction("brought_the_ball_to.png"))
-print(make_prediction("threw_the_ball.png"))
-print(make_prediction("little_girl.png"))
-print(make_prediction("with_his_family.png"))
-print(make_prediction("the_little.png"))
-print(make_prediction("the_daddy.png"))
-print(make_prediction("and_laughed.png"))
-print(make_prediction("would_run_and_get_it.png"))
-print(make_prediction("he_took_it_home_to_play.png"))
-print(make_prediction("picked_it_up_with_his_mouth.png"))
+# print(make_prediction("afternoon_with.png"))
+# print(make_prediction("brought_the_ball_to.png"))
+# print(make_prediction("threw_the_ball.png"))
+# print(make_prediction("little_girl.png"))
+# print(make_prediction("with_his_family.png"))
+# print(make_prediction("the_little.png"))
+# print(make_prediction("the_daddy.png"))
+# print(make_prediction("and_laughed.png"))
+# print(make_prediction("would_run_and_get_it.png"))
+# print(make_prediction("he_took_it_home_to_play.png"))
+# print(make_prediction("picked_it_up_with_his_mouth.png"))
 
 # print(make_prediction("family.jpg"))
 # print(make_prediction("home.jpg"))
@@ -157,3 +165,5 @@ print(make_prediction("picked_it_up_with_his_mouth.png"))
 # print(make_prediction("says,.jpg"))
 # print(make_prediction("sp,k.jpg"))
 # print(make_prediction("1926..jpg"))
+
+export_model()
