@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[3]:
+# In[1]:
 
 
 # to measure run-time
@@ -35,7 +35,7 @@ import urllib.request
 import string
 
 
-# In[4]:
+# In[2]:
 
 
 # Upload and read the csv files from the github repo
@@ -43,7 +43,7 @@ import string
 df = pd.read_csv("https://raw.githubusercontent.com/HelenG123/aeye-alliance/master/Labelled%20Data/symbols_letters.csv")
 
 
-# In[5]:
+# In[3]:
 
 
 # generate the targets 
@@ -77,7 +77,7 @@ for curr_symbol in symbols:
 print(target)
 
 
-# In[7]:
+# In[4]:
 
 
 t0 = time.time()
@@ -112,7 +112,7 @@ tf = time.time()
 print("time: {} s" .format(tf-t0))
 
 
-# In[8]:
+# In[5]:
 
 
 # create a dictionary of all the characters 
@@ -128,7 +128,7 @@ for char in characters:
 print(index2char)
 
 
-# In[9]:
+# In[6]:
 
 
 # find the number of each character in a dataset
@@ -145,13 +145,13 @@ def num_chars(dataset, index2char):
     return chars
 
 
-# In[10]:
+# In[7]:
 
 
 print(num_chars(data, index2char))
 
 
-# In[23]:
+# In[18]:
 
 
 # Create dataloader objects
@@ -164,15 +164,15 @@ batch_size_train = 10
 batch_size_test = 3
 batch_size_validation = 3
 
-# 3130
+# 3955
 # splitting data to get training, test, and validation sets
 # change once get more data
-# 2504 for train
-train_dataset = data[:2504]
-# test has 313
-test_dataset = data[2504:2817]
-# validation has 313
-validation_dataset = data[2817:]
+# 3165 for train
+train_dataset = data[:3165]
+# test has 395
+test_dataset = data[3165:3560]
+# validation has 395
+validation_dataset = data[3560:]
 
 # create the dataloader objects
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size_train, shuffle=True)
@@ -184,14 +184,14 @@ print(len(test_loader))
 print(len(validation_loader))
 
 
-# In[24]:
+# In[19]:
 
 
 print(len(num_chars(test_dataset, index2char)))
 print(num_chars(test_dataset, index2char))
 
 
-# In[25]:
+# In[20]:
 
 
 # to check if a dataset is missing a char
@@ -206,7 +206,7 @@ for char in characters:
 print(num) 
 
 
-# In[33]:
+# In[35]:
 
 
 # defines the convolutional neural network
@@ -269,7 +269,7 @@ print(model)
 print("# parameter: ", sum([param.nelement() for param in model.parameters()]))
 
 
-# In[34]:
+# In[36]:
 
 
 # setting the learning rate
@@ -282,7 +282,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr = learning_rate)
 
 
-# In[35]:
+# In[37]:
 
 
 # function to get which characters were missclassified
@@ -295,7 +295,7 @@ def get_chars(indices, incorrect_dict, index2char):
     return incorrect_dict
 
 
-# In[36]:
+# In[38]:
 
 
 t0 = time.time()
@@ -435,7 +435,7 @@ print()
 print("time: {} s" .format(tf-t0))
 
 
-# In[37]:
+# In[39]:
 
 
 # learning curve function
@@ -448,10 +448,16 @@ def plot_learning_curve(train_losses, validation_losses):
     plt.legend(loc=1)
 
 
-# In[38]:
+# In[40]:
 
 
 # plot the learning curve
 plt.title("Learning Curve (Loss vs Number of Epochs)")
 plot_learning_curve(train_losses, validation_losses)
+
+
+# In[41]:
+
+
+torch.save(model.state_dict(), "numbers_and_symbols.pth")
 
