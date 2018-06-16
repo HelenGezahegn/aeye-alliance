@@ -1,6 +1,8 @@
 import torch
 import torch.onnx
 from torch.autograd import Variable
+import onnx
+# from onnx_tf.backend import prepare
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
@@ -8,13 +10,19 @@ import cv2
 from PIL import Image
 
 # from autocorrect import spell
-
+ 
 def export_model():
     model = CNN()
     model.load_state_dict(torch.load("current_model_7.pth"))
-    dummy_input = Variable(torch.randn(1, 3, 28, 28))
-    torch.onnx.export(model, dummy_input, "model.onnx")
-    
+    dummy_input = Variable(torch.randn(5, 3, 28, 28))
+    torch.onnx.export(model, dummy_input, "model2.onnx")
+
+def inspect_model():
+    onnx_model = onnx.load("model2.onnx")
+    onnx.checker.check_model(onnx_model)
+
+    print(onnx.helper.printable_graph(onxx_model.graph))
+
 
 def make_prediction(img_path):
     model = CNN()
@@ -95,75 +103,81 @@ def make_prediction(img_path):
     return output
 
 
-class CNN(nn.Module):
-    def __init__(self):
-        super(CNN, self).__init__()
-        self.block1 = nn.Sequential(
-            # 3x28x28
-            nn.Conv2d(in_channels=3,
-                      out_channels=16,
-                      kernel_size=5,
-                      stride=1,
-                      padding=2),
-            # 16x28x28
-            nn.MaxPool2d(kernel_size=2),
-            # 16x14x14
-            nn.LeakyReLU()
-        )
-        # 16x14x14
-        self.block2 = nn.Sequential(
-            nn.Conv2d(in_channels=16,
-                      out_channels=32,
-                      kernel_size=5,
-                      stride=1,
-                      padding=2),
-            # 32x14x14
-            nn.MaxPool2d(kernel_size=2),
-            # 32x7x7
-            nn.LeakyReLU()
-        )
-        # linearly
-        self.block3 = nn.Sequential(
-            nn.Linear(32 * 7 * 7, 100),
-            nn.LeakyReLU(),
-            nn.Linear(100, 37)
-        )
-        # 1x36
+# class CNN(nn.Module):
+#     def __init__(self):
+#         super(CNN, self).__init__()
+#         self.block1 = nn.Sequential(
+#             # 3x28x28
+#             nn.Conv2d(in_channels=3,
+#                       out_channels=16,
+#                       kernel_size=5,
+#                       stride=1,
+#                       padding=2),
+#             # 16x28x28
+#             nn.MaxPool2d(kernel_size=2),
+#             # 16x14x14
+#             nn.LeakyReLU()
+#         )
+#         # 16x14x14
+#         self.block2 = nn.Sequential(
+#             nn.Conv2d(in_channels=16,
+#                       out_channels=32,
+#                       kernel_size=5,
+#                       stride=1,
+#                       padding=2),
+#             # 32x14x14
+#             nn.MaxPool2d(kernel_size=2),
+#             # 32x7x7
+#             nn.LeakyReLU()
+#         )
+#         # linearly
+#         self.block3 = nn.Sequential(
+#             nn.Linear(32 * 7 * 7, 100),
+#             nn.LeakyReLU(),
+#             nn.Linear(100, 37)
+#         )
+#         # 1x37
 
-    def forward(self, x):
-        out = self.block1(x)
-        out = self.block2(out)
-        # flatten the dataset
-        out = out.view(-1, 32 * 7 * 7)
-        out = self.block3(out)
+#     def forward(self, x):
+#         out = self.block1(x)
+#         out = self.block2(out)
+#         # flatten the dataset
+#         out = out.view(-1, 32 * 7 * 7)
+#         out = self.block3(out)
 
-        return out
+#         return out
 
-# print(make_prediction("afternoon_with.png"))
-# print(make_prediction("brought_the_ball_to.png"))
-# print(make_prediction("threw_the_ball.png"))
-# print(make_prediction("little_girl.png"))
-# print(make_prediction("with_his_family.png"))
-# print(make_prediction("the_little.png"))
-# print(make_prediction("the_daddy.png"))
-# print(make_prediction("and_laughed.png"))
-# print(make_prediction("would_run_and_get_it.png"))
-# print(make_prediction("he_took_it_home_to_play.png"))
-# print(make_prediction("picked_it_up_with_his_mouth.png"))
+# COMPRESSED PRINT STATEMENTS
+    # print(make_prediction("afternoon_with.png"))
+    # print(make_prediction("brought_the_ball_to.png"))
+    # print(make_prediction("threw_the_ball.png"))
+    # print(make_prediction("little_girl.png"))
+    # print(make_prediction("with_his_family.png"))
+    # print(make_prediction("the_little.png"))
+    # print(make_prediction("the_daddy.png"))
+    # print(make_prediction("and_laughed.png"))
+    # print(make_prediction("would_run_and_get_it.png"))
+    # print(make_prediction("he_took_it_home_to_play.png"))
+    # print(make_prediction("picked_it_up_with_his_mouth.png"))
 
-# print(make_prediction("family.jpg"))
-# print(make_prediction("home.jpg"))
-# print(make_prediction("took.jpg"))
-# print(make_prediction("16.png"))
-# print(make_prediction("30.png"))
-# print(make_prediction("53.png"))
-# print(make_prediction("76.png"))
-# print(make_prediction("86.png"))
-# print(make_prediction("124.png"))
-#
-# print(make_prediction("na--in-.jpg"))
-# print(make_prediction("says,.jpg"))
-# print(make_prediction("sp,k.jpg"))
-# print(make_prediction("1926..jpg"))
+    # print(make_prediction("family.jpg"))
+    # print(make_prediction("home.jpg"))
+    # print(make_prediction("took.jpg"))
+    # print(make_prediction("16.png"))
+    # print(make_prediction("30.png"))
+    # print(make_prediction("53.png"))
+    # print(make_prediction("76.png"))
+    # print(make_prediction("86.png"))
+    # print(make_prediction("124.png"))
+    #
+    # print(make_prediction("na--in-.jpg"))
+    # print(make_prediction("says,.jpg"))
+    # print(make_prediction("sp,k.jpg"))
+    # print(make_prediction("1926..jpg"))
 
-export_model()
+# Run export_model once to export the model. ONLY ONCE.
+# export_model()
+
+inspect_model()
+
+# onnx_to_tf()
