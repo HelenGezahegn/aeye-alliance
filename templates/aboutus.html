@@ -4,86 +4,101 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 		<link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Emojione_1F441.svg/2000px-Emojione_1F441.svg.png">
 		<title> About Us </title>		
-<style>
-	body {
-		background-color: black;
-		font-family: 'Poppins', sans-serif;
-		background-image: url("https://cdn.dribbble.com/users/32512/screenshots/3025506/artificial_intelligence_product_rokid.gif");
-		background-repeat: no-repeat;
-		background-position: bottom right;
-        background-attachment: fixed;
-		padding: 100px;
-		background-size: 15%;
-        margin-top: 0;
-        padding: 0;
-        text-align: center;
-		color: white;
-	}
+	<style>
+		body {
+			background-color: black;
+			font-family: 'Poppins', sans-serif;
+			background-image: url("https://cdn.dribbble.com/users/32512/screenshots/3025506/artificial_intelligence_product_rokid.gif");
+			background-repeat: no-repeat;
+			background-position: bottom right;
+	        background-attachment: fixed;
+			padding: 100px;
+			background-size: 15%;
+	        margin-top: 0;
+	        padding: 0;
+	        text-align: center;
+			color: white;
+		}
 
-	.nav {
-		font-size: 30px;
-        padding: 0;
-        margin-top: 0;
-	}
+		.nav {
+			font-size: 30px;
+	        padding: 0;
+	        margin-top: 0;
+		}
 
-	h1 {
-        text-align: center;
-        color: white;
-        font-size: 100px;
-        margin-bottom: 0;
-        margin-top: 0;
-    }
+		h1 {
+	        text-align: center;
+	        color: white;
+	        font-size: 100px;
+	        margin-bottom: 0;
+	        margin-top: 0;
+	    }
 
-	a {
-		color: white;
-		text-decoration: none;
-	}
+		a {
+			color: white;
+			text-decoration: none;
+		}
 
-	a:hover {
-		color: blue;
-		transition: 0.3s;
-        /* transition: color 12s, font-size 12s; */
-        
-	}
+		a:hover {
+			color: blue;
+			transition: 0.3s;
+	        /* transition: color 12s, font-size 12s; */
+	        
+		}
 
-	.text {
-		font-size: 18px;
-	}
+		.text {
+			font-size: 18px;
+		}
 
-	.bottom {
-		background-image: url("https://media.giphy.com/media/eMBLXzYg75zb2/giphy.gif");
-		background-position: center;
-		background-size: 30%;
-		height: 300px;
-		background-repeat: no-repeat;
-		background-position-y: 50px;
-	}
+		.bottom {
+			background-image: url("https://media.giphy.com/media/eMBLXzYg75zb2/giphy.gif");
+			background-position: center;
+			background-size: 30%;
+			height: 300px;
+			background-repeat: no-repeat;
+			background-position-y: 50px;
+		}
 
-</style>
-
-	
+		img {
+			border-radius: 10px;
+		}
+		.center {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 50%;
+		}
+	</style>	
 </head>
-
 <body>
 
 	<h1> About Us </h1>
 	
 		<ul class = "nav">
-			<li><a href = "/"> Home </a></li>
+			<li><a href = "index.html"> Home </a></li>
 			<!-- <li><a href = "aboutus.html"> About Us </a></li> -->
-			<li><a href = "https://github.com/HelenG123/ai-alliance"> Source Code </a></li>
-			<li><a href = "/upload"> Upload Image </a></li>
+			<li><a href = "https://github.com/HelenG123/aeye-alliance"> Source Code </a></li>
+			<li><a href = "tutorial.html"> Tutorial </a></li>
+			<li><a href = "upload.html"> Upload Image </a></li>
 		</ul>
 		
-	<div class="title">
-		<div class="text" > 
-		<p>We are a group of four young undergraduate female students who are currently partaking in the AI4SocialGood Lab at McGill University. 
-		    All of us are studying computer science and are steadily learning about AI and machine learning throughout the lab. 
-	            This project is done in the context of the AI4SocialGood Hackathon 2018, where we are able to apply both our old and newfound knowledge to solve a social problem. 
-		    Using data acquired from the internet, we trained an AI that will recognize Braille characters and translate them into English.
-	            We plan to further develop this technology to be able to recognize different forms of Braille and translate them into their corresponding languages as well as other languages.
-		    The main objective of this project is to bring awareness of Braille and to bridge the gap of communication between blind and non-blind people.</p> 
-		</div>		
+	<div class="about">
+		<p>We are a group of four undergraduate female students in computer science who are currently partaking in the AI4SocialGood Lab at McGill University. Throughout the first 2 weeks of the lab, we learned about AI and machine learning techniques and are now applying this knowledge to solve a social problem. Based on personal experience, we felt that there weren't enough technology out there to help non-blind people interact and communicate with blind people. So we decided to create a braille-to-text converter that is able to take an image of a line (a word, sentence, or a character) of Braille, recognize it, and output its English counterpart. Using data acquired from rare book collections and the internet, we contructed our own dataset consisting of multiple sets of the Braille alphabet, numbers, and symbols. We then trained an AI that will recognize images of individual Braille characters and translate them into English characters. Using a specific ratio and cropping function, we are able to take an image of a sentence/line of Braille and segment each Braille character out individually. We feed each of these characters into our model and then concatenate the output characters together into an English sentence or word. The main objective of this project is to bring awareness of Braille and to bridge the gap of communication between blind and non-blind people.</p> 		
+	</div>
+
+	<div class="journey">
+		<h3>Catch a glimpse of our journey below...</h3>
+		<table class="image1">
+		<caption align="bottom">Where it all began...</caption>
+		<tr><td><img src=before.jpg alt="Us at the hackathon" class="center"></td></tr>
+		</table>
+		<p>Our braille-to-text-converter started off as a project for the AI4SocialGood Hackathon 2018 hosted at Desjardins Lab. Because we didn't have time to complete most of our goals for the project during the 24hrs duration of the hackathon, we decided to continue the project as our final project for the AI4SocialGood Lab that we are all participating in.</p>
+
+		<table class="image2">
+		<caption align="bottom">Us now...a little older and a little wiser!</caption>
+		<tr><td><img src=before.jpg alt="Us at the hackathon" class="center"></td></tr>
+		</table>
+		<p>We've been working hard on our project for the past 3 weeks! We were able to accomplish all of our goals (and even learnt English Grade 1 Braille along the way!) for the project and we hope this project will be of use at some point in your life, especially if someone you know is blind and uses Braille to read!</p>
 	</div>
 
 	<div class="bottom">

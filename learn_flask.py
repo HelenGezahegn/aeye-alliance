@@ -21,6 +21,10 @@ def index():
 def aboutus():
     return render_template('aboutus.html')
 
+@app.route("/tutorial")
+def tutorial():
+    return render_template('tutorial.html')
+
 @app.route("/upload")
 def upload():
     return render_template('upload.html')

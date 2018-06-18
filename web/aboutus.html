@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-	<link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Emojione_1F441.svg/2000px-Emojione_1F441.svg.png">
-	<title> About Us </title>		
+		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+		<link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Emojione_1F441.svg/2000px-Emojione_1F441.svg.png">
+		<title> About Us </title>		
 	<style>
 		body {
 			background-color: black;
@@ -68,11 +68,12 @@
 			margin-right: auto;
 			width: 50%;
 		}
-	</style>
+	</style>	
 </head>
-
 <body>
+
 	<h1> About Us </h1>
+	
 		<ul class = "nav">
 			<li><a href = "index.html"> Home </a></li>
 			<!-- <li><a href = "aboutus.html"> About Us </a></li> -->
@@ -81,13 +82,13 @@
 			<li><a href = "upload.html"> Upload Image </a></li>
 		</ul>
 		
-	<div class="text">
+	<div class="about">
 		<p>We are a group of four undergraduate female students in computer science who are currently partaking in the AI4SocialGood Lab at McGill University. Throughout the first 2 weeks of the lab, we learned about AI and machine learning techniques and are now applying this knowledge to solve a social problem. Based on personal experience, we felt that there weren't enough technology out there to help non-blind people interact and communicate with blind people. So we decided to create a braille-to-text converter that is able to take an image of a line (a word, sentence, or a character) of Braille, recognize it, and output its English counterpart. Using data acquired from rare book collections and the internet, we contructed our own dataset consisting of multiple sets of the Braille alphabet, numbers, and symbols. We then trained an AI that will recognize images of individual Braille characters and translate them into English characters. Using a specific ratio and cropping function, we are able to take an image of a sentence/line of Braille and segment each Braille character out individually. We feed each of these characters into our model and then concatenate the output characters together into an English sentence or word. The main objective of this project is to bring awareness of Braille and to bridge the gap of communication between blind and non-blind people.</p> 		
 	</div>
 
 	<div class="journey">
+		<!-- "{{ url_for('static', filename='img1.png') }}"-->
 		<h2>Catch a glimpse of our journey below...</h2>
-
 		<table class="image1">
 		<caption align="bottom">Where it all began...</caption>
 		<tr><td><img src=before.jpg alt="Us at the hackathon" class="center"></td></tr>

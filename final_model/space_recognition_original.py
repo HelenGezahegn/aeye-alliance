@@ -10,6 +10,7 @@ import cv2
 from PIL import Image
 import torch.utils.model_zoo as model_zoo
 import torch.onnx
+import os
 
 # from autocorrect import spell
 
@@ -52,8 +53,9 @@ def inspect_model():
     # # print(onnx.helper.printable_graph(onnx_model.graph))
 
 def make_prediction(img_path):
+    
     model = CNN()
-    model.load_state_dict(torch.load("current_model_9.pth"))
+    model.load_state_dict(torch.load("final_model/current_model_9.pth"))
     image = Image.open(img_path)
     image = image.convert('RGB')
     width, height = image.size
@@ -171,7 +173,7 @@ class CNN(nn.Module):
             nn.LeakyReLU(),
             nn.Linear(100, 37)
         )
-        # 1x36
+        # 1x37
 
     def forward(self, x):
         out = self.block1(x)
