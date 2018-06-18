@@ -220,7 +220,7 @@ class CNN(nn.Module):
 # print(make_prediction("would_run_and_get_it.png"))
 # print(make_prediction("he_took_it_home_to_play.png"))
 # print(make_prediction("picked_it_up_with_his_mouth.png"))
-print(make_prediction("New_York.png"))
+# print(make_prediction("New_York.png"))
 
 
 
