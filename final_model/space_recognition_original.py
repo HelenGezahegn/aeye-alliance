@@ -53,7 +53,7 @@ def inspect_model():
 
 def make_prediction(img_path):
     model = CNN()
-    model.load_state_dict(torch.load("current_model_8.pth"))
+    model.load_state_dict(torch.load("current_model_9.pth"))
     image = Image.open(img_path)
     image = image.convert('RGB')
     width, height = image.size
