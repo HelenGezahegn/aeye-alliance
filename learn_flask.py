@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import time, CNN
+import time
 import os, sys
 
 sys.path.insert(0, 'current_model')

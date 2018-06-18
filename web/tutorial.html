@@ -39,7 +39,8 @@
     	text-align: left;
     }
 
-    p {
+    .notes {
+    	color: white;
     	text-align: left;
     }
 
@@ -68,15 +69,20 @@
 		background-position-y: 50px;
 	}
 
-	img {
-		border-radius: 10px;
-	}
 	.center {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
 		width: 50%;
 	}
+
+	.instructions {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+	}
+
 </style>
 </head>
 <body>
@@ -88,10 +94,42 @@
 			<!-- <li><a href = "tutorial.html"> Tutorial </a></li> -->
 			<li><a href = "upload.html"> Upload Image </a></li>
 	</ul>
-	<p>This page will show you how to use our Braille-to-text converter. To be able to upload an image on our 'Upload Image' page, you need to first...</p>
+	<p>This page shows you how to use our Braille-to-text converter</p>
+
+	<div class="instructions">
 	<ol>
-		<li>Choose an image of a line of Braille</li>
+		<li>Choose or take an image of Braille that you would like to translate into English</li>
+		<table class="image1">
+		<caption align="bottom">A sample picture of Braille taken from a library book</caption>
+		<tr><td><img src=braille.jpg alt="A picture of Braille" class="center"></td></tr>
+		</table>
+		<p>Save the image on your computer</p>
+		
+		<li>Crop your image</li>
+		<table class="image2">
+		<caption align="bottom">A sample picture of good cropping</caption>
+		<tr><td><img src=Emboss.jpg alt="A cropped image of a line of Braille" class="center"></td></tr>
+		</table>
+		<p>Our braille-to-text converter uses a ratio to segment and translate each character, so it is essential that you comply with the following cropping instructions in order to get a good translation. Crop your image so that there is about as much padding as the image above (refer to the red line showing the padding). The size of the padding should be about half of the amount of space between two Braille characters.</p>
+
+		<li>Go to the 'Upload Image' page and upload your image by clicking the 'Choose File' button</li>
+		<table class="image3">
+		<caption align="bottom">Choosing a file to upload</caption>
+		<tr><td><img src=upload.jpg alt="Uploading an image" class="center"></td></tr>
+		</table>
+
+		<li>Click on the 'Submit' button and you should see the translation below!</li>
+
 	</ol>
+	<ul class="notes">NOTE:
+		<li>Our Braille-to-text-converter only translates English Grade 1 Braille</li>
+		<li>So far we can only translate one line of Braille at a time. If you would like to translate multiple lines of Braille, please upload each line separately.</li>
+		<li>We trained our model only on embossed Braille so pictures of handwritten Braille might not translate well</li>
+		<li>Characters that our model can recognize:</li>
+		<!-- image of all characters our Braille model can recognize -->
+	</ul>
+	</div>
+
 	<div class="bottom">
 		<div class = "text"> <span> Brought to you by AEyeAlliance</span> </div>
 		<!-- <ul>
