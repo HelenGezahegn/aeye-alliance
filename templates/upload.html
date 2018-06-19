@@ -52,10 +52,11 @@
                 margin-top: 0;
             }
 
+
             a {
                 color: white;
                 text-decoration: none;
-                font-size: 40px;
+                font-size: 35px;
             }
 
             a:hover {
@@ -64,11 +65,20 @@
             }
 
             input {
-                font-size: 40px;
+                font-size: 30px;
                 font-family: 'Poppins', sans-serif;
-                margin-left: -115px;
                 position: absolute;
                 color: white; 
+            }
+
+            .submit {
+                background-color: DodgerBlue;
+                margin-left: -60px;
+            }
+
+            .file {
+                color: DodgerBlue;
+                margin-left: -180px;
             }
 
             img {
@@ -78,10 +88,11 @@
             h1 {
                 text-align: center;
                 color: white;
-                font-size: 100px;
+                font-size: 60px;
                 margin-bottom: 0;
                 margin-top: 0;
             }
+
         </style>
     </head>
 
@@ -90,12 +101,12 @@
 
         <nav> 
             <a href = "/"> Home </a> </br>
-            <a href = "/tutorial"> Tutorial </a> </br>
+            <a href = "/tutorial_slider"> Tutorial </a> </br>
             <a href = "/aboutus"> About Us </a> </br>
-            <a href = "https://github.com/HelenG123/aeye-alliance"> Source Code </a> </br>
+            <a href = "https://github.com/HelenG123/aeye-alliance"> Source Code </a> </br> </br></br>
             <form method="post" action="/upload_results" name="submit" enctype="multipart/form-data">
-                <input type="file" name="fileField"><br /><br />
-                <input type="submit" name="submit" value="Submit">
+                <input type="file" name="fileField" class="file"><br /><br />
+                <input type="submit" name="submit" value="Submit" class="submit">
             </form>
         </nav> 
 

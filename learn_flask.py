@@ -25,6 +25,10 @@ def aboutus():
 def tutorial():
     return render_template('tutorial.html')
 
+@app.route("/tutorial_slider")
+def tutorial_slider():
+    return render_template('tutorial_slider.html')
+
 @app.route("/upload")
 def upload():
     return render_template('upload.html')
