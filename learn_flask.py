@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
-import time, CNN
+import time
 import os, sys
 
-sys.path.insert(0, 'current_model')
-from current_prediction import make_prediction
+sys.path.insert(0, 'final_model')
+from space_recognition_original import make_prediction
 
 app = Flask(__name__)
 
@@ -20,6 +20,10 @@ def index():
 @app.route("/aboutus")
 def aboutus():
     return render_template('aboutus.html')
+
+@app.route("/tutorial")
+def tutorial():
+    return render_template('tutorial.html')
 
 @app.route("/upload")
 def upload():

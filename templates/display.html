@@ -35,7 +35,7 @@
             a {
                 color: white;
                 text-decoration: none;
-                font-size: 30px;
+                font-size: 40px;
             }
 
             a:hover {
@@ -51,6 +51,7 @@
 
         <nav> 
             <a href = "/"> Home </a> </br>
+            <a href = "/tutorial"> Tutorial </a> </br>
             <a href = "/aboutus"> About Us </a> </br>
             <a href = "https://github.com/HelenG123/aeye-alliance"> Source Code </a> </br>
             <a href = "/upload"> Upload Image</a>
@@ -58,9 +59,9 @@
 
         <img align="middle" src="../static/{{filename}}/" alt="Italian Trulli">
         <!-- Display the word {{letter}} -->
-        <h2 class = "translation"> Letter in English:  </h2>
+        <h2 class = "translation"> Letter in English: </h2>
         <script>
-            document.getElementsByClassName("translation")[0].innerHTML = "Letter in English: {{letter}}"
+            document.getElementsByClassName("translation")[0].innerHTML = "Translation: {{letter}}"
         </script>
         
     </body>
