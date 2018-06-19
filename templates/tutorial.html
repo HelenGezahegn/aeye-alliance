@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+	<link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Emojione_1F441.svg/2000px-Emojione_1F441.svg.png">
+	<title>Tutorial</title>
+	<style>
+	body {
+		background-color: black;
+		font-family: 'Poppins', sans-serif;
+		background-image: url("https://cdn.dribbble.com/users/32512/screenshots/3025506/artificial_intelligence_product_rokid.gif");
+		background-repeat: no-repeat;
+		background-position: bottom right;
+        background-attachment: fixed;
+		padding: 100px;
+		background-size: 15%;
+        margin-top: 0;
+        padding: 0;
+        text-align: center;
+		color: white;
+	}
+
+	nav {
+		font-size: 40px;
+        padding: 0;
+        margin-top: 0;
+	}
+
+	h1 {
+        text-align: center;
+        color: white;
+        font-size: 100px;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    ol {
+    	color: white;
+    	text-align: left;
+    }
+
+    .notes {
+    	color: white;
+    	text-align: left;
+    }
+
+	a {
+		color: white;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: blue;
+		transition: 0.3s;
+        /* transition: color 12s, font-size 12s; */
+        
+	}
+
+	.text {
+		font-size: 18px;
+	}
+
+	.bottom {
+		background-image: url("https://media.giphy.com/media/eMBLXzYg75zb2/giphy.gif");
+		background-position: center;
+		background-size: 30%;
+		height: 300px;
+		background-repeat: no-repeat;
+		background-position-y: 50px;
+	}
+
+/*	img {
+		border-color: white;
+		border-width: 10px; 
+		align-content: center;
+	}*/
+
+	img {
+    	display: block;
+    	margin-left: auto;
+    	margin-right: auto;
+    	width: 40%;
+	}
+
+/*	.center {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+	}*/
+
+	.instructions {
+		margin: auto;
+		width: 75%;
+		border: 3px solid blue;
+		padding: 10px;
+		text-align: center;
+		/*display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;*/
+	}
+
+/*	.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}*/
+
+	.numbers {
+		font-size: 25px;
+		color: RoyalBlue;
+	}
+
+	h3 {
+		text-align: left;
+	}
+
+	.notes {
+		text-align:left;
+	}
+
+</style>
+</head>
+<body>
+	<h1>Tutorial</h1>
+		<nav> 
+			<a href = "/"> Home </a> </br>
+			<a href = "/aboutus"> About Us </a> </br>
+			<a href = "https://github.com/HelenG123/aeye-alliance"> Source Code </a> </br>
+			<a href = "/upload"> Upload Image</a>
+		</nav></br>
+<!-- 
+	<p>This page is a tutorial that shows you how to use our Braille-to-text converter.</p> -->
+
+	<div class="instructions">
+		<ol>
+			<li class="numbers">Choose or take a picture of Braille that you would like to translate into English</li></br>
+			<table class="image1">
+			<caption align="bottom">A sample picture of Braille taken from a library book</caption>
+			<tr><td><img src="{{ url_for('static', filename='braille_image.jpg') }}" alt="A picture of Braille" class="center" border="3"></td></tr>
+			</table>
+			
+			</br><li class="numbers">Crop your image</li></br>
+			<table class="image2">
+			<caption align="bottom">A sample picture of good cropping</caption>
+			<tr><td><img src="{{ url_for('static', filename='Emboss_padding.png') }}" alt="A cropped image of a line of Braille" class="center" border="3"></td></tr>
+			</table>
+			<p>Our braille-to-text converter uses a ratio to segment and translate each character, so it is essential that you comply with the following cropping instructions in order to get a good translation. Crop your image so that there is about as much padding as the image above (refer to the red outline showing the padding you should leave). The size of the padding should be about 1/3 the amount of space between two Braille characters.</p>
+
+			</br><li class="numbers">Go to the 'Upload Image' page and upload your image by clicking'Choose File'</li></br>
+			<table class="image3">
+			<caption align="bottom">Choosing a file to upload</caption>
+			<tr><td><img src="{{ url_for('static', filename='upload_file.png') }}" alt="Uploading an image" class="center" border="3"></td></tr>
+			</table>
+
+			</br><li class="numbers">Click on the 'Submit' button and you should see the translation below!</li></br>
+			<table class="image4">
+			<caption align="bottom">Submitting and getting an output</caption>
+			<tr><td><img src="{{ url_for('static', filename='results_page.png') }}" alt="Submitting the image" class="center" border="3"></td></tr>
+			</table>
+		</ol>
+
+	<!-- <div class="notes"> -->
+		</br><h3>NOTE:</h3>
+		<ul>
+			<li class="notes">Our Braille-to-text-converter only translates English Grade 1 Braille</li>
+			<li class="notes">So far we can only translate one line of Braille at a time. If you would like to translate multiple lines of Braille, please upload each line separately.</li>
+			<li class="notes">We trained our model only on embossed Braille so pictures of handwritten Braille might not translate well</li>
+			<li class="notes">Characters that our model can recognize:</li>
+			<!-- image of all characters our Braille model can recognize -->
+		</ul>
+	</div>
+
+	<div class="bottom"> </br>
+		<div class = "text"> <span> Brought to you by AEyeAlliance</span> </div>
+		<!-- <ul>
+			<li><a href = "https://github.com/HelenG123/ai-alliance"> Source code </a> </li>
+		</ul> -->
+	</div>
+</body>
+</html>
