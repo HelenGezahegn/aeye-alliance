@@ -10,13 +10,11 @@ import cv2
 from PIL import Image
 import torch.utils.model_zoo as model_zoo
 import torch.onnx
-import os
 
-# from autocorrect import spell
 
 def export_model():
     model = CNN()
-    model.load_state_dict(torch.load("current_model_9.pth"))
+    model.load_state_dict(torch.load("model.pth"))
 
     # Input to the model
     x = torch.randn(5, 3, 28, 28)
@@ -32,7 +30,6 @@ def inspect_model():
     # Input image into the ONNX model
     onnx_model = onnx.load("model.onnx")
     model = onnx_caffe2.backend.prepare(onnx_model)
-
 
     image = Image.open("z.jpg")
     # # image = image.convert('RGB')
@@ -53,9 +50,8 @@ def inspect_model():
     # # print(onnx.helper.printable_graph(onnx_model.graph))
 
 def make_prediction(img_path):
-    
     model = CNN()
-    model.load_state_dict(torch.load("final_model/current_model_9.pth"))
+    model.load_state_dict(torch.load("model.pth"))
     image = Image.open(img_path)
     image = image.convert('RGB')
     width, height = image.size
@@ -64,12 +60,6 @@ def make_prediction(img_path):
 
     letters = []
     for i in range(0, num):
-        # if i == 0:
-        #     cropped = image.crop((i * w, 0, (i + 1) * w * 1.01, height))
-        # elif i == num:
-        #     cropped = image.crop((i * w * 0.99, 0, (i + 1) * w, height))
-        # else:
-        #     cropped = image.crop((i * w * 0.99, 0, (i + 1) * w * 1.01, height))
         cropped = image.crop((i * w, 0, (i + 1) * w, height))
         # cropped.show()
         cropped = np.array(cropped)
@@ -136,7 +126,6 @@ def make_prediction(img_path):
             else:
                 output = output + j
 
-    # return spell(str(output))
     return output
 
 
@@ -173,56 +162,21 @@ class CNN(nn.Module):
             nn.LeakyReLU(),
             nn.Linear(100, 37)
         )
-        # 1x37
+        # 1x36
 
     def forward(self, x):
         out = self.block1(x)
         out = self.block2(out)
         # flatten the dataset
-        #ipdb; ipdb.set_trace()
+        # ipdb; ipdb.set_trace()
         out = out.view(-1, 32 * 7 * 7)
         out = self.block3(out)
 
         return out
 
-# print(make_prediction("He_was_happy..png"))
-# print(make_prediction("!embelli.png"))
-# print(make_prediction("16.png"))
-# print(make_prediction("30.png"))
-# print(make_prediction("53.png"))
-# print(make_prediction("76.png"))
-# print(make_prediction("86.png"))
-# print(make_prediction("124.png"))
-# print(make_prediction("1859colon.png"))
-# print(make_prediction("family.jpg"))
-# print(make_prediction("1926..png"))
-# print(make_prediction("home.jpg"))
-# print(make_prediction("took.jpg"))
-# print(make_prediction("threw_the_ball.png"))
-# print(make_prediction("little_girl.png"))
-# print(make_prediction("with_his_family.png"))
-# print(make_prediction("the_little.png"))
-# print(make_prediction("the_daddy.png"))
-# print(make_prediction("and_laughed.png"))
-# print(make_prediction("family.jpg"))
-# print(make_prediction("home.jpg"))
-# print(make_prediction("took.jpg"))
-# print(make_prediction("sp,k.jpg"))
-# print(make_prediction("Prairie.jpg"))
-# print(make_prediction("PRESS.jpg"))
-# print(make_prediction("III.jpg"))
-# print(make_prediction("Mt..jpg"))
-# print(make_prediction("Univ.jpg"))
-# print(make_prediction("says,.jpg"))
-# print(make_prediction("na--in.png"))
-
-
-# print(make_prediction("afternoon_with.png"))
-# print(make_prediction("brought_the_ball_to.png"))
-# print(make_prediction("would_run_and_get_it.png"))
-# print(make_prediction("he_took_it_home_to_play.png"))
-# print(make_prediction("picked_it_up_with_his_mouth.png"))
-# print(make_prediction("New_York.png"))
-
-
-
+print(make_prediction("test/Prairie.jpg"))
+print(make_prediction("test/He_was_happy..png"))
+print(make_prediction("test/the_little.png"))
+print(make_prediction("test/with_his_family.png"))
+print(make_prediction("test/with_his_mouth..png"))
+print(make_prediction("test/would_run_and_get_it.png"))
