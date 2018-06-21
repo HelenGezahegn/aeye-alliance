@@ -30,9 +30,10 @@ Since we were not able to find an open source or public dataset of images of Eng
 `python learn_flask.py`
 4. You should see something similar to this
 ![running flask](https://github.com/HelenG123/aeye-alliance/blob/master/flask.png)
-5. If you get an "ImportError: No module named flask_uploads, do
+5. If you get an "ImportError: No module named flask_uploads", try
 `pip install Flask_Uploads`
 6. Copy and paste the HTTP link onto your browser. 
+7. If you are unsure about how to use our Braille-to-Text converter, there is a Tutorial page on our site that will show you how. 
 
 ## Credits ##
 Special thanks to our mentors Peng Yu and Francis Gregoire!
