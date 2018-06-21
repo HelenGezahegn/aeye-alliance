@@ -20,11 +20,14 @@ The main objective of this project is to bring awareness of Braille and to bridg
 
 Unfortunately, due to error with some kernel operations from using tensorflow on Android Studio, we were not able to successfully import and use our model on our android app. [We have posted this error on StackOverFlow.](https://stackoverflow.com/questions/50955816/java-lang-illegalargumentexception-no-opkernel-was-registered-to-support-op-ga) For the time being, we will use our website as the main Braille-to-Text converter.
 
+## Open Source Dataset ##
+Since we were not able to find an open source or public dataset of images of English Grade 1 Braille, we are planning on releasing our own dataset to be downloaded and used for free. 
+
 ## How to run flask to access our website ##
 1. Make sure your machine has Flask installed in either conda or pip
 2. Clone/Download this repository
 3. Navigate to the repo directory on your command prompt and type
-'python learn_flask.py'
+`python learn_flask.py`
 4. You should see something similar to this
 ![running flask](https://github.com/HelenG123/aeye-alliance/blob/master/flask.png)
 5. If you get an "ImportError: No module named flask_uploads, do
