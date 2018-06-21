@@ -1,0 +1,2 @@
+include ':ucrop', ':sample'
+rootProject.name = 'AEyeAlliance'
