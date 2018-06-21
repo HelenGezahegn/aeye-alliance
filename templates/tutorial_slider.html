@@ -157,7 +157,7 @@
 
         .notes {
             width: 1000px;
-            height: 800px;
+            height: 780px;
             background-color: black;
             margin-left: auto;
             margin-right: auto;
@@ -210,10 +210,9 @@
     <div class="notes">
         <h3>NOTE:</h3>
         <ul>
-            <li>Our Braille-to-text-converter only translates English Grade 1 Braille</li>
-            <li>The converter can only translate one line of Braille at a time.</li>
-            <li>If you would like to translate multiple lines of Braille, please upload each line separately.</li>
-            <li>We trained our model only on embossed Braille so pictures of handwritten Braille might not translate well.</li>
+            <li>Our Braille-to-text-converter only translates English Grade 1 Braille, one line at a time.</li>
+            <li>If you would like to translate multiple lines of Braille, please upload each line as an individual image.</li>
+            <li>We trained our model only on embossed Braille so images of handwritten Braille might not translate well.</li>
             <li>Characters that our model can recognize:</li></br>
             <a href="http://www.brailleauthority.org/tg/web-manual/images/appAbraille-ascii.jpg"><img src="{{ url_for('static', filename='braille_character_chart.jpg') }}" alt="Chart of all the Braille characters our model can recognize" class="center"></a>
         </ul>
