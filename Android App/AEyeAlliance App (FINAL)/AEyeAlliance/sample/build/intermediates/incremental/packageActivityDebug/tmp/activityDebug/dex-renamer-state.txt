@@ -1,0 +1,4 @@
+#Thu Jun 21 14:14:01 EDT 2018
+base.0=C\:\\Users\\user\\Desktop\\AEyeAllianceV6(with model)\\AEyeAlliance\\sample\\build\\intermediates\\transforms\\dexMerger\\activity\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
