@@ -24,7 +24,7 @@
             android:id="@+id/txtViewResult"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="465dp"
             android:fontFamily="@font/poppins_bold"
             android:gravity="center"
             android:text="@string/bonnie_boy"
