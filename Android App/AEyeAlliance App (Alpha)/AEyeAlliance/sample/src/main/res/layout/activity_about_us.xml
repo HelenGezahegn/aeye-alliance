@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/black"
+    android:fillViewport="true">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <LinearLayout
+            android:id="@+id/wrapper_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@drawable/bg_rounded_rectangle"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <!--ABOUT US TITLE SECTION-->
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="fill_parent"
+                android:layout_height="84dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="About Us"
+                android:textColor="@color/colorAccent"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.509"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--About us description-->
+            <TextView
+                android:id="@+id/aboutus_1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
+                android:nestedScrollingEnabled="true"
+                android:text="We are a group of four undergraduate female students in computer science who are currently partaking in the AI4SocialGood Lab at McGill University. Throughout the first 2 weeks of the lab, we learned about AI and machine learning techniques and are now applying this knowledge to solve a social problem. Based on personal experience, we felt that there weren't enough technology out there to help non-blind people interact and communicate with blind people. So we decided to create a braille-to-text-converter that is able to take an image of a line (a word, sentence, or a character) of Braille, recognize it, and output its English counterpart."
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/source_code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <!--About us description-->
+            <ImageView
+                android:id="@+id/aboutus_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/logo" />
+
+            <TextView
+                android:id="@+id/aboutus_2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
+                android:nestedScrollingEnabled="true"
+                android:text="Using data acquired from rare book collections and the internet, we constructed our own dataset consisting of multiple sets of the Braille alphabet, numbers, and symbols. We then trained an AI that will recognize images of individual Braille characters and translate them into English characters. Using a specific ratio and cropping function, we are able to take an image of a sentence/line of Braille and segment each Braille character out individually. We feed each of these characters into our model and then concatenate the output characters together into an English sentence or word. The main objective of this project is to bring awareness of Braille and to bridge the gap of communication between blind and non-blind people."
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/source_code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <!--SPECIAL THANKS SECTION-->
+
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/us" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="fill_parent"
+                android:layout_height="93dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
+                android:text="Special thanks to our mentors Peng Yu and Francis Gregoire! We couldn't have gotten this far without them."
+                android:textColor="#f6d4f7"
+                android:textSize="15sp"
+                android:textStyle="italic"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.591"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/photo_with_mentors" />
+
+            <!--SOURCE CODE SECTION-->
+            <TextView
+                android:id="@+id/source_code"
+                android:layout_width="fill_parent"
+                android:layout_height="42dp"
+                android:layout_marginBottom="28dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="Source Code"
+                android:textColor="@color/colorAccent"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="0dp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</ScrollView>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="@color/black"-->
+    <!--tools:context=".AboutUs">-->
+
+    <!--&lt;!&ndash;ABOUT US TITLE SECTION&ndash;&gt;-->
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="315dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:fontFamily="@font/poppins_bold"-->
+        <!--android:gravity="center"-->
+        <!--android:text="About Us"-->
+        <!--android:textColor="@color/colorAccent"-->
+        <!--android:textSize="50sp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.509"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+
+    <!--&lt;!&ndash;About us description&ndash;&gt;-->
+    <!--<TextView-->
+        <!--android:id="@+id/about_us"-->
+        <!--android:layout_width="321dp"-->
+        <!--android:layout_height="364dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:fontFamily="@font/poppins"-->
+        <!--android:gravity="center"-->
+        <!--android:isScrollContainer="true"-->
+        <!--android:nestedScrollingEnabled="true"-->
+        <!--android:scrollbarAlwaysDrawVerticalTrack="true"-->
+        <!--android:scrollbars="vertical"-->
+        <!--android:text="We are a group of four undergraduate female students in computer science who are currently partaking in the AI4SocialGood Lab at McGill University. Throughout the first 2 weeks of the lab, we learned about AI and machine learning techniques and are now applying this knowledge to solve a social problem. Based on personal experience, we felt that there weren't enough technology out there to help non-blind people interact and communicate with blind people. So we decided to create a braille-to-text-converter that is able to take an image of a line (a word, sentence, or a character) of Braille, recognize it, and output its English counterpart. Using data acquired from rare book collections and the internet, we contructed our own dataset consisting of multiple sets of the Braille alphabet, numbers, and symbols. We then trained an AI that will recognize images of individual Braille characters and translate them into English characters. Using a specific ratio and cropping function, we are able to take an image of a sentence/line of Braille and segment each Braille character out individually. We feed each of these characters into our model and then concatenate the output characters together into an English sentence or word. The main objective of this project is to bring awareness of Braille and to bridge the gap of communication between blind and non-blind people."-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/source_code"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.51"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/textView"-->
+        <!--app:layout_constraintVertical_bias="0.0" />-->
+
+    <!--&lt;!&ndash;SOURCE CODE SECTION&ndash;&gt;-->
+    <!--<TextView-->
+        <!--android:id="@+id/source_code"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="42dp"-->
+        <!--android:layout_marginBottom="28dp"-->
+        <!--android:fontFamily="@font/poppins_bold"-->
+        <!--android:gravity="center"-->
+        <!--android:text="Source Code"-->
+        <!--android:textColor="@color/colorAccent"-->
+        <!--android:textSize="25sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--tools:layout_editor_absoluteX="0dp" />-->
+
+    <!--&lt;!&ndash;SPECIAL THANKS SECTION&ndash;&gt;-->
+    <!--<TextView-->
+        <!--android:id="@+id/textView2"-->
+        <!--android:layout_width="327dp"-->
+        <!--android:layout_height="118dp"-->
+        <!--android:layout_marginBottom="36dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:fontFamily="@font/poppins"-->
+        <!--android:gravity="center"-->
+        <!--android:text="Special thanks to our mentors Peng Yu and Francis Gregoire! We couldn't have gotten this far without them."-->
+        <!--android:textColor="#f6d4f7"-->
+        <!--android:textSize="15sp"-->
+        <!--android:visibility="gone"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.591"-->
+        <!--app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--</android.support.constraint.ConstraintLayout>-->

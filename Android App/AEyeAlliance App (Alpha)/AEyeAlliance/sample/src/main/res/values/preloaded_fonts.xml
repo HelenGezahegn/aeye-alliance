@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/acme</item>
+        <item>@font/aldrich</item>
+        <item>@font/amaranth</item>
+        <item>@font/cantata_one</item>
+        <item>@font/convergence</item>
+        <item>@font/poppins</item>
+        <item>@font/poppins_bold</item>
+    </array>
+</resources>
