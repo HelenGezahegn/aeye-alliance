@@ -3,9 +3,9 @@ AI4SocialGood Final Project: Braille to text converter (Optical Character Recogn
 
 ## About us ##
 We are a group of four undergraduate female students in computer science who are currently partaking in the AI4SocialGood Lab at McGill University. Throughout the first 2 weeks of the lab, we learned about AI and machine learning techniques and are now applying this knowledge to solve a social problem.
-<p align="center">
-  
-  <img src="https://github.com/HelenG123/aeye-alliance/blob/master/static/group_pic.jpg?raw=true"
+
+<p align="center"> 
+  <img src="https://github.com/HelenG123/aeye-alliance/blob/master/static/group_pic.jpg?raw=true" />
 </p>
 
 ## Introduction ##
