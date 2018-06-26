@@ -22,7 +22,7 @@ The main objective of this project is to bring awareness of Braille and to bridg
 * website
 * android app
 
-Unfortunately, due to error with some kernel operations from using tensorflow on Android Studio, we were not able to successfully import and use our model on our android app. [We have posted this error on StackOverFlow.](https://stackoverflow.com/questions/50955816/java-lang-illegalargumentexception-no-opkernel-was-registered-to-support-op-ga) For the time being, we will use our website as the main Braille-to-Text converter.
+We were able to successfully import and load our model in Android Studio. Unfortunately, due to errors with some kernel operations from using Tensorflow with Android Studio, we were not to feed our Braille images into our model. [We have posted this error on StackOverFlow.](https://stackoverflow.com/questions/50955816/java-lang-illegalargumentexception-no-opkernel-was-registered-to-support-op-ga) For the time being, we will use our website as the main Braille-to-Text converter.
 
 ## Open Source Dataset ##
 Since we were not able to find an open source or public dataset of images of English Grade 1 Braille, we are planning on releasing our own dataset to be downloaded and used for free. 
