@@ -1,5 +1,6 @@
 # AEyeAlliance
 AI4SocialGood Final Project: Braille to text converter (Optical Character Recognition/Optical Braille Recognition)
+
 We are continuing to work on this project [here](https://github.com/AEyeAlliance/AEyeAlliance). 
 
 ## About us ##
