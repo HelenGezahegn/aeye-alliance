@@ -23,7 +23,10 @@ The main objective of this project is to bring awareness of Braille and to bridg
 ## User Interfaces ##
 * Website
 
-![Website](https://github.com/HelenG123/aeye-alliance/blob/master/static/web.gif?raw=true)
+<p align="center"> 
+  <img src="https://github.com/HelenG123/aeye-alliance/blob/master/static/web.gif?raw=true" />
+</p>
+
 
 * Android app
 
