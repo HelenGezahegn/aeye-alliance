@@ -1,7 +1,7 @@
 # AEyeAlliance
 AI4SocialGood Final Project: Braille to text converter (Optical Character Recognition/Optical Braille Recognition)
 
-We are continuing to work on this project [here](https://github.com/AEyeAlliance/AEyeAlliance). 
+We are continuing to work on this project [here](https://github.com/AEyeAlliance). 
 
 ## About us ##
 We are a group of four undergraduate female students in computer science who are currently partaking in the AI4SocialGood Lab at McGill University. Throughout the first 2 weeks of the lab, we learned about AI and machine learning techniques and are now applying this knowledge to solve a social problem.
