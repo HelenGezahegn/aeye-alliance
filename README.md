@@ -3,7 +3,7 @@ AI4SocialGood Final Project: Braille to text converter (Optical Character Recogn
 
 <b>The main objectives of this project are to raise awareness of Braille and to bridge the gap of communication between blind and non-blind people.</b>
 
-<b><a href="https://github.com/AEyeAlliance">WE ARE CONTINUING TO WORK ON THIS PROJECT HERE.</a></b>
+<p align="center"><b><a href="https://github.com/AEyeAlliance">WE ARE CONTINUING TO WORK ON THIS PROJECT HERE.</a></b></p>
 
 ## About us ##
 We are a group of four undergraduate female students in computer science who were part of the AI4SocialGood Lab 2018 at McGill University. Throughout the first 2 weeks of the lab, we learned about AI and machine learning techniques and are now applying this knowledge to solve a social problem. 
