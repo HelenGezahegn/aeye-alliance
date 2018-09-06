@@ -40,7 +40,7 @@ Our Android app has a cropping function that allows users to take a picture or c
 Since we were not able to find an open source or public dataset of images of English Grade 1 Braille, we are planning on releasing our own dataset to be downloaded and used for free. At the moment, we have approximately 30,000 Braille characters in our dataset and are continuing to add more.
 
 ## Future Goals ##
-1. Increase our dataset to 100,000 characters
+1. Increase our dataset to 100,000 images
 2. Use image segmentation
 3. Debug kernel errors in our Android app
 4. Host our website
