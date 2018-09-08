@@ -17,7 +17,7 @@ Based on personal experience, we felt that there wasn't enough technology out th
 
 Our model is able to recognize all the letters in the alphabet, capital letters, numbers, commas, periods, spaces, hyphens, apostrophes, colons, semicolons, question marks, and exclamation marks. Please refer to the chart below. 
 
-![Braille Character Chart](https://github.com/HelenG123/aeye-alliance/blob/master/static/Classifiers_image.png)
+![Braille Character Chart](https://github.com/HelenG123/aeye-alliance/blob/master/static/braille_char_chart.png)
 
 ## User Interfaces ##
 * Website
